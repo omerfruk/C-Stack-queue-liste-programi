@@ -119,7 +119,7 @@ public:
 			temp->next = new StackQueueNode(data);
 		}
 	}
-	void writeAll() const // tüm diziyi yazdiracak fonk
+	void writeAll() const // tum diziyi yazdiracak fonk
 	{
 		StackQueueNode *temp = root; //tanimladigimiz gecici degiskene atama yaptik
 		while (temp != NULL)		 // gecici degiskenimiz bos olasiya kadar ilerledik
@@ -148,14 +148,7 @@ public:
 		}
 		return size;
 	}
-	void deleteAll() // verilerin hepsini silem
-	{
-		while (!isEmpty()) // bosluk kontrolu
-		{
-			Delete(); // silme metodu
-		}
-		root = NULL; // null tanimlayarak siliyoruz
-	}
+	
 };
 // dugum classini burda belirtiyoruz ve nesne ureterek kullanicaz
 class node
@@ -214,10 +207,7 @@ int main() // main fonk islemler burada gerceklesecek
 		int choice;												//secim icin bir degisken alalim
 		cin >> choice;												// degiskene kullanicidan deger isteyelim
 
-			switch (choice) // secimi degerlendirelim
-			{
-			case 1: //yigin giris
-			{	
+		if (choice==1){
 				cout<<"otomatik veriler atanm�st�r"<<endl;
 				cout<<"Stack yapisini en bastan duzenlemek icin lutfen temizleyin"<<endl;
 				for (int i = 0; i <= 5; i++)
@@ -240,42 +230,40 @@ int main() // main fonk islemler burada gerceklesecek
 				cout << "--------------------------------------" << endl;	//menu yazdiralim
 				int choice;												// secim icin bir degisken tanimlayalim
 				cin >> choice;												// secimi alalaim kullanicidan
-				switch (choice)												// secimi calistirmak icin bir kosul yapisi kuralim
-				{
-				case 1:
-					int input;	   // kullanicinin girmek istedigi deger icin degisken
-					cout<<"lutfen eklemek istediginiz degeri giriniz"<<endl;
-					cin >> input;  // kullanicidan istedigi degeri alalim
-					s.push(input); //degeri metotla gonderelim
-					cout << "Stackge " << input << " degeri eklendi" << endl;
-					break;
-				case 2:
-					s.pop(); // metodla cikrama islemini yapalim
-					cout << "Stackten eleman cikarildi" << endl;
-					break;
-				case 3:
-					s.deleteAll(); // metodu ile tum verileri silelim
-					cout << "Stack temizlendi..." << endl;
-					break;
-				case 4:
-					s.writeAll(); // metodu ile tum verileri yazdiralim
-					break;
-				case 5:
-					cout << "Stackteki verilerin boyutu " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
-					break;
-				case 6:
-					StackManu = false; // ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
-					break;
-				default: // olasi istenmeyen tum durumlari ele alp yonlendirilmesini yapalim
-					cout << "girilen deger istenilenler arasina bulunmamaktadir..." << endl;
-					StackManu = false; //ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
-					break;
+					if (choice==1){
+						int input;	   // kullanicinin girmek istedigi deger icin degisken
+						cout<<"lutfen eklemek istediginiz degeri giriniz"<<endl;
+						cin >> input;  // kullanicidan istedigi degeri alalim
+						s.push(input); //degeri metotla gonderelim
+						cout << "Stackge " << input << " degeri eklendi" << endl;
+						}
+					else if(choice == 2){
+						s.pop(); // metodla cikrama islemini yapalim
+						cout << "Stackten eleman cikarildi" << endl;
+						}
+					else if(choice == 3){
+						s.deleteAll(); // metodu ile tum verileri silelim
+						cout << "Stack temizlendi..." << endl;
+						}
+					else if(choice==4){
+						s.writeAll(); // metodu ile tum verileri yazdiralim
+						}
+					else if(choice == 5){
+						cout << "Stackteki verilerin boyutu " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
+						}
+					else if(choice == 6){
+						StackManu = false; // ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
+						}
+					
+					else{ // olasi istenmeyen tum durumlari ele alp yonlendirilmesini yapalim
+						cout << "girilen deger istenilenler arasina bulunmamaktadir..." << endl;
+						StackManu = false; //ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
+					}	
 				}
-			}
-		}
+	}
 	
-			case 2:// kuyruk yapisi baslangici
-			{					   
+				else if(choice == 2)// kuyruk yapisi baslangici
+					{					   
 					cout<<"otomatik veriler atanmistir"<<endl;
 					cout<<"kuyruk yapisini en bastan kurmak icin lutfen temizleyiniz."<<endl;
 					int data; // ekleme islemi icin degisken ata
@@ -300,42 +288,42 @@ int main() // main fonk islemler burada gerceklesecek
 					// burada otomatik olarak değer veriyoruz
 					int choice;	// secim icin degisken ata
 					cin >> choice;	// degiskeni kulanicidan al
-					switch (choice) // secim icin secim kaisi olustur
+				    if (choice == 1)
 					{
-					case 1:
 						int data;
 						cout<<"lutfen eklemek istediginiz deger igiriniz"<<endl;	  //kullanicidan isteyecegimiz degerin atanmasi
 						cin >> data;									  // degiskenin alinmasi
 						q.Add(data);									  // metodla istenen degerin eklenmesi kuyruk mantigi oldugundan ilk giren veri ilk cikar yani ekmek sirasi gibi yer belirtemeyiz
 						cout << "kuyruga degeri"<< data<< " eklendi " << endl; //eklenen degeri gosteme
-						break;
-					case 2:
+					}
+					else if(choice == 2){
 						q.Delete(); //metod la deger silme kuyruk yapisi oldugundan bastan cikma olur deger vermeyiz cikarma dedik mi en bastan cikar ekmek sirasi gibi ilk gelen ilk cikar
 						cout << "islem gerceklesiyor...\n Kalan elemanlar" << endl;
 						q.writeAll(); // metod yardimiyla tum vrileri yazdiralim
-						break;
-					case 3:
-						q.deleteAll(); // metod yardimiyla tum verileri silelim
+					}
+					else if (choice == 3){
+						q.Delete(); // metod yardimiyla tum verileri silelim
 						cout << "kuyruk temizleniyor..." << endl;
-						break;
-					case 4:
+					}
+					else if (choice == 4){
 						q.writeAll(); // metod yardimi ile tum degerleri yazdiralim
-						break;
-					case 5:
+					}
+					else if (choice == 5){
 						cout << "kuyruktaki eleman sayisi \n"
 							 << q.getSize() << endl; // metod yarimiyla dizinin eleman sayisina bakalim
-						break;
-					case 6:
+					}
+					else if (choice == 6){
 						QueueManu = false; // donguden cikabilmek icin gereken false atamasini yapalim
-						break;
-					default:
+					}
+					else {
 						cout << "boyle bir islem belitrilmemistir" << endl; //yanlis secim uyarisi
 						QueueManu = false;									// girilen yanklis secimleri ana menuye gondererek hatalardan kacinalim
-						break;
+					
+					}
 					}
 				}
-			}
-			case 3:
+			
+			else if(choice == 3)
 			{
 				//siradan veriler yazdiralimm ve baglamayi yapalim 
 				//yeni dugumler ekledik.
@@ -362,32 +350,30 @@ int main() // main fonk islemler burada gerceklesecek
 				{
 					cout << "------------Liste   Menu--------------" << endl;	//liste yazdir
 					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//liste yazdir
-					cout << "/ 1.Listeye eleman ekle 				/" << endl; //liste yazdir
-					cout << "/ 2.Listeden  eleman cikar	     		/" << endl;		//liste yazdir
-					cout << "/ 3.listeyi temizle					/" << endl; //liste yazdir
-					cout << "/ 4.listedeki elemanlari goster    	/" << endl;		//liste yazdir
-					cout << "/ 5.listenin eleman sayisini goster    /" << endl;	//liste yazdir
-					cout << "/ 6.Ana menuye don 					/" << endl; //liste yazdir
+					cout << "/ 1.Listeye eleman ekle 			" << endl; //liste yazdir
+					cout << "/ 2.Listeden  eleman cikar	     	" << endl;		//liste yazdir
+					cout << "/ 3.listeyi temizle					" << endl; //liste yazdir
+					cout << "/ 4.listedeki elemanlari goster    	" << endl;		//liste yazdir
+					cout << "/ 5.listenin eleman sayisini goster    " << endl;	//liste yazdir
+					cout << "/ 6.Ana menuye don 					" << endl; //liste yazdir
 					cout << "--------------------------------------" << endl;	//liste yazdir
 					int choice;												// secim icin degisken tanimlayalim
 					cin >> choice;												// kulanicidan deger alalim
-					switch (choice)												// dongu ile menu icinde gezinelim
+					if(choice == 1)
 					{
-					case 1:
 						int degisen = 6;		 //eklenecek degerin nerden eklenecegini son degeri arttirmak icin
 						bool EklemeSekli = true; // menu icinde kalabilme degiskeni
 						while (EklemeSekli)
 						{																// menu icerisinde gezinebilmek icin dongu
 							cout << "---------Ekleme seklini seciniz---------" << endl; //liste yazdir
-							cout << "/ 1. Araya eleman ekleme.              /" << endl; //liste yazdir
-							cout << "/ 2. Sona eleman ekleme.               /" << endl; //liste yazdir
-							cout << "/ 3. Listeleme islemlerine geri don.   /" << endl; //liste yazdir
+							cout << "/ 1. Araya eleman ekleme.              " << endl; //liste yazdir
+							cout << "/ 2. Sona eleman ekleme.             " << endl; //liste yazdir
+							cout << "/ 3. Listeleme islemlerine geri don.   " << endl; //liste yazdir
 							cout << "----------------------------------------" << endl; //liste yazdir
 							char choice;												// secim icin degisken tanimlama
 							cin >> choice;												// kullanicidan secim alma
-							switch (choice)												// secimi calistirma
-							{
-							case 1:
+							if (choice == 1)
+							{/*
 								int istenen, index;			   // degisken tanimlayalim altta anlaticaz
 								node *value(degisen) = new node(); // nesnemizi olusturduk her bu metoda gelindiginde otomatik olarak 1 adet nesne olusturacaz
 								cout << "istenen degeri giriniz" << endl;
@@ -397,8 +383,11 @@ int main() // main fonk islemler burada gerceklesecek
 								cin >> index;							  // yapimizda nereye ekleme yapacagimizi belirlemek icin kullanicidan index isteme
 								ArayaEkle(value1, value(degisen), index); // fonk. parametrelerimizi gonderiyoruz
 								degisken++;								  // degiskenimizi arttiriyoruz ki bir sonraki veriyi ustine yazmasin
-								break;
-							case 2:
+							*/
+							}
+							else if(choice == 2)
+							{
+							/*	
 								int istenen;					   // degisken tanimlayalim alta anlatalim
 								node *value(degisen) = new node(); // nesne olusturuyoruz fakat üstte global(degisen) degiskenimiz inexinde
 								cout << "degeri giriniz" << endl;
@@ -406,85 +395,93 @@ int main() // main fonk islemler burada gerceklesecek
 								value(degisen)->veri = istenen;	  // atama oparetorleri ile degisken indexli nesnemizin verisine kullanicidan aldigimiz veriyi atiyoruz
 								SonaEkle(value1, value(degisen)); // metodumuza parametre gondererek calistiriyoruz
 								degisen++;						  // tabiki global degiskenimizi arttirmayi unutmuyoruz
-								break;
-							case 3:
+							*/
+							}
+							else if (choice == 3)
+							{
 								EklemeSekli = false; //ekleme menusunden cikmak icin gerekli atamayi yapiyoruz
-								break;
-							default:
+							}
+							else 
+							{
 								cout << "seciminiz dogru degildir" << endl;
 								EklemeSekli = false; //istenmeyen islem seceneklerini menuye tekrar gondererek engelliyoruz
-								break;
 							}
 						}
-
-					case 2:
+					}
+					else if (choice ==2 )
+						{
 						bool SilmeSekli = true; // silme islem menusu icin degisken olusturma
 						while (SilmeSekli)
 						{																 // menuyu surekli onumuzde tutmak icin dongu
 							cout << "---------Silme seklini seciniz---------" << endl;	 //menu yazdir
-							cout << "/ 1. Aradan eleman silme.              /" << endl;	 //menu yazdir
-							cout << "/ 2. Sondan eleman silme.               /" << endl; //menu yazdir
-							cout << "/ 3. Listeleme islemlerine geri don.   /" << endl;	 //menu yazdir
+							cout << "/ 1. Aradan eleman silme.              " << endl;	 //menu yazdir
+							cout << "/ 2. Sondan eleman silme.             " << endl; //menu yazdir
+							cout << "/ 3. Listeleme islemlerine geri don.   " << endl;	 //menu yazdir
 							cout << "----------------------------------------" << endl;	 //menu yazdir
 							char choice;												 // secim degiskenini tanimlama
 							cin >> choice;												 // kullanicidan secimi alma
-							switch (choice)												 // secimi calistirmak icin gerekli kosul kapisini kuralim
+							if (choice == 1)
 							{
-							case 1:
 								int index; // degisken tanimlayalim
 								cout << "silmek istediginiz elemanın indexini giriniz" << endl;
 								cin >> index;				// cikarilacak elemanin indexini kullanicidan alalim
 								AradanCikar(value1, index); // metodlara parametre gondererk calistiralim
-								break;
-							case 2:
+							}
+							else if (choice == 2)
+							{
 								SondanCikar(value1); // sondan cıkarma metodunun parametresini direk atayalim
-								break;
-							case 3:
+							}
+							else if (choice == 3)
+							{
 								SilmeSekli = false; // metod cikisi icin gerekli atamayi yapalim
-								break;
-							default:
+							}
+							else 
+							{ 
 								cout << "girilen islem bulunamadı" << endl;
 								SilmeSekli = false; // istenmeyen secimler icin manuye tekrar yonlendirme
-								break;
 							}
 						}
-					case 3:
+						}
+					else if (choice == 3)
+					{
 						value1->veri = NULL; //nesnemizim en basindaki veriyi null yaparsak listemizi sileriz
-						break;
-					case 4:						 // burada yazdığımız fonk ta yaptıgımız while döngüsüyle kuyrukta gezmek
+					}
+					else if (choice == 4) // burada yazdığımız fonk ta yaptıgımız while döngüsüyle kuyrukta gezmek
+						{/*
 						int x = 1;				 // degisken tanimlayalim
 						while (x != degisen + 1) // verileri listeleme icin gerekli donguyu olusturalim
 						{
 							cout << "" value(x)->veri << endl; // elemanlari birer bire yazdiralim
 							x++;							   // degiskenimiz artiralim
+						}*/
 						}
-						break;
-					case 5:
+					else if (choice == 5)
+					{/*
 						for (int y = 1; y <= degisken; y++) // listemizdki elemanlarin sayisini gormemizi saglayacak metod
 						{
 							int toplam = 0; // degisken atamasi
 							toplam++;		//toplam degiskeni bize listemizde kaç adet degisken oldugunu göstersin
 						}
 						cout << "toplam veri sayısı" toplam << endl;
-						break;
-					case 6:
+					*/}
+					else if (choice == 6)
+					{
 						BagilListe = false; // liste manumuzden cikmak icin gerekli false atamasini yapalim
-						break;
-					default:
+					}
+					 else 
+					{
 						cout << "boyle bir secenek yoktur" << endl;
-						break;
 					}
 				}
 			}
-			case 4:
+			else if (choice ==4)
 				MainManu = false;
-			default:
+			else 
 				MainManu = false;
-				break;
 			}
 		}
-	}
-}
+	
+
 
 // dugum sona veri ekleme fonk.
 void SonaEkle(node *veri, node *pNew)

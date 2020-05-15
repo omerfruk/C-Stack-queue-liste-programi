@@ -159,17 +159,103 @@ public:
 	}
 	
 };
-// dugum classini burda belirtiyoruz ve nesne ureterek kullanicaz
-class node
-{
-public:
-	node()
-	{
-		pNextValue = NULL;
-		//int toplam=0;
-	}
-	int veri;
-	node *pNextValue;
+class Node{//Linked List icin dügüm yapisi
+	public://Erisim belirleyici
+		int data;//Integer türünde data isimli degisken
+		Node* next;//Node türünde next isimli pointer
+		Node(const int& data = 0, Node* next = NULL) : data(data), next(next) {	}//Dügüm yapisi için kurucu method
+};
+class LinkedList{//Linked List sinif yapisi
+	Node* root;//Node türünde root isimli pointer
+	int size;//Integer türünde size isimli degisken
+	public://Erisim belirleyici
+		LinkedList() : root(NULL){	}//LinkedList sinifi icin kurucu method
+		Node* begin()const{return root;}//Listenin nerede basladigini belirten method
+		Node* end() const{return NULL;}//Listenin nerede bittigini belirten method
+		bool isEmpty()const{return begin()==end();}//Listenin bos olup olmadigi degerini döndüren method
+		void push_back(const int& data){//Listeye sondan eleman eklememize yarayan method
+			if(isEmpty()){//Listenin bos olup olmadigini kontrol ediyoruz
+				root = new Node(data);//Liste bossa baslangic degerine gelen parametreyi data olarak ekliyoruz
+			}
+			else{//Liste bos degilse
+				Node* temp = begin();//Gecici bir pointer olusturup liste baslangicina esitliyoruz
+				while(temp->next != end()){//Bütün listeyi dolasiyoruz liste sonuna gelene kadar
+					temp = temp->next;//liste sonuna geldigimizde eleman ekleyebilmek için son elemenin next adresine yeni data adresini veriyoruz
+				}
+				temp->next = new Node(data);//Listenin sonuna parametreden gelen datayi ekliyoruz
+			}
+		}
+		
+		void print(){//Listeyi ekrana yazdirdigimiz method
+			Node* temp = begin();//Temp isimli gecici bir pointer olusturup liste baslangicina esitliyoruz
+			cout<<"List: ('{': Baslangic, '}': Bitis)"<<endl;//Bilgilendirme
+			cout<<"{";//Bilgilendirme
+			while(temp != end()){//Bütün listeyi dolasiyoruz
+				cout<<temp->data<<",";//Listedeki elemanlari tek tek ekrana yazdiriyoruz
+				temp = temp->next;//Yazdirdigimiz elemandan bir sonraki elemana geciyoruz
+			}
+			cout<<"}"<<endl;//Bilgilendirme
+		}
+		void pop_at(Node* pStart, int index){//Belirli bir index numarasindaki elemani listeden çikarmamiza yarayan method
+			if(isEmpty())
+				throw "Error LinkedList::pop_at() for List is empty!";
+			if(index > getSize())
+				throw "Error LinkedList::pop_at() for index is out of bounds!";
+			for(int i = 0; i<index-2;i++){//Girilen 'index'inci elemandan bir önceki elemani buluyoruz
+				pStart = pStart->next;//Çikarilmak istenen elemandan bir önceki elemanin next ile gösterdigi adresi aliyoruz
+			}
+				Node* temp = pStart->next;//Gecici bir pointer olusturup cikarmak istedigimiz elemanin adresini gösteriyoruz
+				pStart->next = pStart->next->next;//Çikarmak istedigimiz elemandan önceki elemanin next adresini, çikarmak istedigimiz elemandan sonraki elemanin adresine esitliyoruz
+				cout<<"Silinen eleman degeri: "<<temp->data<<endl;//Bilgilendirme
+				delete temp;//Istenilen elemani listeden çikariyoruz ve hafizadan temizliyoruz
+		}
+		
+		void pop_back(){//Listenin sonundaki elemani çikarmamiza yarayan method
+			if(isEmpty()){//Listenin bos olup olmadigini kontrol ediyoruz
+				throw "Error List::pop_back() for List is empty!";//Liste bossa çikarilacak eleman yoktur bir exception firlatiyoruz
+			}
+			if(begin()->next == end()){//Listede tek eleman olup olmadigini kontrol ediyoruz
+				cout<<"Listeden Son Elaman Cikariliyor.."<<endl;
+				delete root;//Listede tek eleman varsa baslangic elemanidir. Elemani listeden çikariyoruz ve hafizadan temizliyoruz
+				root = NULL;//Liste baslangic adresinin NULL degere esitliyoruz liste bos oldugu icin
+			}
+			else{//Listede birden fazla eleman varsa
+				cout<<"Listeden Son Eleman Cikariliyor.."<<endl;
+				Node* temp = begin();//Liste baslangicini gösteren gecici bir pointer olusturuyoruz
+				while(temp->next->next != end()){//Listeyi dolasiyoruz
+					temp = temp->next;//Liste sonudaki elemani gecici pointera esitliyoruz
+				}
+				delete temp->next;//Liste sonundaki elemani listeden çikariyoruz ve hafizadan temizliyoruz
+				temp->next = NULL;//Listenin son elemanin next ile gösterdigi adresi NULL degere esitliyoruz cunku kendisinden sonra gelen bir eleman yok
+			}
+		}
+		void makeEmpty(){//Listeyi temizlememize yarayan method
+			while(!isEmpty()){//Liste bos olana kadar
+				pop_back();//Listedeki son elemani çikariyoruz pop_back() methoduyla(Line 160)
+			}
+			root = NULL;//Liste artik bos oldugu için baslangic adresini NULL degere esitliyoruz
+		}
+		
+		void push_at(Node* pStart,const int& data, int index){//Belirli bir indexe, istenilen datayi eklememize yarayan method
+			if(index > getSize())
+				throw "Error LinkedList::push_at() for index is out of bounds";
+			Node* pNew = new Node(data);//Parametre olarak gelen data ile yeni bir Node olusturuyoruz
+			for(int i = 0; i<index-2;i++){//Istenilen index degerininden bir önceki elemani buluyoruz
+				pStart = pStart->next;//Istenilen indexten bir önceki elemanin gösterdigi next adresini aliyoruz
+			}
+			pNew->next = pStart->next;//Olusturdugumuz yeni dugumun gösterdigi next adresini önceden ayni indexte olan elemanin adresine esitliyoruz(Eleman kaydirma)
+			pStart->next = pNew;//Istenilen indexten bir önceki elemanin next adresini yeni olusturdugumuz dügümün adresine esitliyoruz		
+		}
+		
+		int getSize()const{//Listenin eleman sayisini elde ettigimiz method
+			int size = 0;//Liste eleman sayisini tutacak olan Integer türünde size isimli degisken
+			Node* temp = begin();//Gecici bir pointer olusturup liste baslangicina esitliyoruz
+			while(temp != end()){//Butun listeyi dolasiyoruz
+				size++;//Listedeki elemanlari dolastikca sayaci "1" artiriyoruz
+				temp = temp->next;//Bir sonraki elemena geciyoruz
+			}
+			return size;//Eleman sayisi geri döndürüyoruz
+		}
 };
 /*
 buradaki algoritmada yapmaya calistigim bir node verisi olusturmak istedigimizde direk olarak degerler atansÄ±n 
@@ -190,19 +276,14 @@ ve baglamalarÄ± otomatik olarak yapilsin fakat tam olarak yapamadim
 		
 	}
 	
-}*/
-
-//-----node fonk.-----
-void ArayaEkle(node *, node *, int); //araya ekleme fonk
-void SonaEkle(node *, node *);		 // sona ekleme fonk
-node *AradanCikar(node *, int);		 // aradan cikarma fonk
-node *SondanCikar(node *);			 // sondan cikarma fonk
-void Bagla();						 //baglama fonk
+}
+*/
 
 int main() // main fonk islemler burada gerceklesecek
 {
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
+	LinkedList l;
 	bool MainManu = true; // ana menuye donmek icin gerekli degiskenimiz
 	while (MainManu)
 	{																// surekli bu menude kalmak icin gerekli dongu
@@ -258,7 +339,7 @@ int main() // main fonk islemler burada gerceklesecek
 						s.writeAll(); // metodu ile tum verileri yazdiralim
 						}
 					else if(choice == 5){
-						cout << "Stackteki verilerin boyutu " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
+						cout << "<-Stackteki verilerin boyutu->" << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
 						}
 					else if(choice == 6){
 						StackManu = false; // ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
@@ -335,30 +416,10 @@ int main() // main fonk islemler burada gerceklesecek
 			
 			else if(choice == 3)
 			{
-				//siradan veriler yazdiralimm ve baglamayi yapalim 
-				//yeni dugumler ekledik.
-				node *value1 = new node(); // nesne olusturalim
-				node *value2 = new node(); // nesne olusturalim
-				node *value3 = new node(); // nesne olusturalim
-				node *value4 = new node(); // nesne olusturalim
-				node *value5 = new node(); // nesne olusturalim
-				// dugumlerin veri yerlerine eleman ekledik.
-				value1->veri = 1; //nesnelerin veri bolmelerine istedigimiz degerleri yazalim
-				value2->veri = 2; //nesnelerin veri bolmelerine istedigimiz degerleri yazalim
-				value3->veri = 3; //nesnelerin veri bolmelerine istedigimiz degerleri yazalim
-				value4->veri = 4; //nesnelerin veri bolmelerine istedigimiz degerleri yazalim
-				value5->veri = 5; //nesnelerin veri bolmelerine istedigimiz degerleri yazalim
-				//dugumleri birbirine bagladýk
-				value1->pNextValue = value2; // veri tipimiz liste oldugu icin 2 bogumlu bir kutu dusunup bir kutumuzun icine deger verirken diger kutumuzun icine bir sonraki verimizin adresini atÄ±yalÄ±m
-				value2->pNextValue = value3; //liste mantigini uygulama
-				value3->pNextValue = value4; //liste mantigini uygulama
-				value4->pNextValue = value5; //liste mantigini uygulama
-				cout<<"otomatik veriler yuklendi"<<endl;
-				cout<<"listeyi en bastan yapmak icin temizleyiniz"<<endl;
 				bool BagilListe = true;		 // bagil liste icinde kalmak icin bir degisken tanimlayalim
 				while (BagilListe)			 // dongumuzu kurup bu menude kalalim
 				{
-					cout << "------------Liste   Menu--------------" << endl;	//liste yazdir
+					cout << "------------LinkedList Menu--------------" << endl;	//liste yazdir
 					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//liste yazdir
 					cout << "/ 1.Listeye eleman ekle 			" << endl; //liste yazdir
 					cout << "/ 2.Listeden  eleman cikar	     	" << endl;		//liste yazdir
@@ -371,7 +432,6 @@ int main() // main fonk islemler burada gerceklesecek
 					cin >> choice;												// kulanicidan deger alalim
 					if(choice == 1)
 					{
-						int degisen = 6;		 //eklenecek degerin nerden eklenecegini son degeri arttirmak icin
 						bool EklemeSekli = true; // menu icinde kalabilme degiskeni
 						while (EklemeSekli)
 						{																// menu icerisinde gezinebilmek icin dongu
@@ -380,32 +440,36 @@ int main() // main fonk islemler burada gerceklesecek
 							cout << "/ 2. Sona eleman ekleme.             " << endl; //liste yazdir
 							cout << "/ 3. Listeleme islemlerine geri don.   " << endl; //liste yazdir
 							cout << "----------------------------------------" << endl; //liste yazdir
-							char choice;												// secim icin degisken tanimlama
+							char choice=0;												// secim icin degisken tanimlama
 							cin >> choice;												// kullanicidan secim alma
 							if (choice == 1)
-							{/*
-								int istenen, index;			   // degisken tanimlayalim altta anlaticaz
-								node *value(degisen) = new node(); // nesnemizi olusturduk her bu metoda gelindiginde otomatik olarak 1 adet nesne olusturacaz
-								cout << "istenen degeri giriniz" << endl;
-								cin >> istenen;					// kulanicidan bir deger isteyecez bunu istenen degiskenine atiyacaz bunu da degisken indexli nesnemizin verisine atiyacaz
-								value(degisen)->veri = istenen; //  degisken indexli nesnemizin verisine atama
-								cout << "degeri kacinci index e yuklemek istersiniz" << endl;
-								cin >> index;							  // yapimizda nereye ekleme yapacagimizi belirlemek icin kullanicidan index isteme
-								ArayaEkle(value1, value(degisen), index); // fonk. parametrelerimizi gonderiyoruz
-								degisken++;								  // degiskenimizi arttiriyoruz ki bir sonraki veriyi ustine yazmasin
-							*/
+							{
+								cout<<"Eklemek istediginiz deger: ";
+							int data;
+							cin>>data;
+							cout<<endl;
+							cout<<"Listeye kacinci eleman olarak eklensin? ";
+							int index;
+							cin>>index;
+							if(index<= 0){
+								cout<<"Gecerli Bir Deger Giriniz!"<<endl;
+								continue;
+							}
+							cout<<endl;
+							try{
+								l.push_at(l.begin(),data,index);
+							} catch(const char* ex){
+								cout<<ex<<endl;
+							}
+
 							}
 							else if(choice == 2)
 							{
-							/*	
-								int istenen;					   // degisken tanimlayalim alta anlatalim
-								node *value(degisen) = new node(); // nesne olusturuyoruz fakat Ã¼stte global(degisen) degiskenimiz inexinde
-								cout << "degeri giriniz" << endl;
-								cin >> istenen;					  // eklemek istedigimiz degeri istiyoruz
-								value(degisen)->veri = istenen;	  // atama oparetorleri ile degisken indexli nesnemizin verisine kullanicidan aldigimiz veriyi atiyoruz
-								SonaEkle(value1, value(degisen)); // metodumuza parametre gondererek calistiriyoruz
-								degisen++;						  // tabiki global degiskenimizi arttirmayi unutmuyoruz
-							*/
+							cout<<"Eklemek istediginiz deger: ";
+							int data;
+							cin>>data;
+							cout<<endl;
+							l.push_back(data);
 							}
 							else if (choice == 3)
 							{
@@ -414,7 +478,7 @@ int main() // main fonk islemler burada gerceklesecek
 							else 
 							{
 								cout << "seciminiz dogru degildir" << endl;
-								EklemeSekli = false; //istenmeyen islem seceneklerini menuye tekrar gondererek engelliyoruz
+								continue; //istenmeyen islem seceneklerini menuye tekrar gondererek engelliyoruz
 							}
 						}
 					}
@@ -432,14 +496,29 @@ int main() // main fonk islemler burada gerceklesecek
 							cin >> choice;												 // kullanicidan secimi alma
 							if (choice == 1)
 							{
-								int index; // degisken tanimlayalim
-								cout << "silmek istediginiz elemanÄ±n indexini giriniz" << endl;
-								cin >> index;				// cikarilacak elemanin indexini kullanicidan alalim
-								AradanCikar(value1, index); // metodlara parametre gondererk calistiralim
+								cout<<"Listeden kacinci eleman olarak cikarilsin? ";
+							int index;
+							cin>>index;
+							if(index<= 0){
+								cout<<"Gecerli Bir Deger Giriniz!"<<endl;
+								continue;
+							}
+
+							cout<<endl;
+							try{
+								l.pop_at(l.begin(),index);
+							} catch(const char* ex){
+								cout<<ex<<endl;
+							}
+							
 							}
 							else if (choice == 2)
 							{
-								SondanCikar(value1); // sondan cÄ±karma metodunun parametresini direk atayalim
+							try{
+								l.pop_back();
+							} catch(const char* ex){
+								cout<<ex<<endl;
+							}
 							}
 							else if (choice == 3)
 							{
@@ -448,32 +527,22 @@ int main() // main fonk islemler burada gerceklesecek
 							else 
 							{ 
 								cout << "girilen islem bulunamadÄ±" << endl;
-								SilmeSekli = false; // istenmeyen secimler icin manuye tekrar yonlendirme
+								continue;
 							}
 						}
 						}
 					else if (choice == 3)
 					{
-						value1->veri = NULL; //nesnemizim en basindaki veriyi null yaparsak listemizi sileriz
+						l.makeEmpty(); //nesnemizim en basindaki veriyi null yaparsak listemizi sileriz
 					}
 					else if (choice == 4) // burada yazdÄ±ÄŸÄ±mÄ±z fonk ta yaptÄ±gÄ±mÄ±z while dÃ¶ngÃ¼sÃ¼yle kuyrukta gezmek
-						{/*
-						int x = 1;				 // degisken tanimlayalim
-						while (x != degisen + 1) // verileri listeleme icin gerekli donguyu olusturalim
-						{
-							cout << "" value(x)->veri << endl; // elemanlari birer bire yazdiralim
-							x++;							   // degiskenimiz artiralim
-						}*/
-						}
+					{
+						l.print();
+					}
 					else if (choice == 5)
-					{/*
-						for (int y = 1; y <= degisken; y++) // listemizdki elemanlarin sayisini gormemizi saglayacak metod
-						{
-							int toplam = 0; // degisken atamasi
-							toplam++;		//toplam degiskeni bize listemizde kaÃ§ adet degisken oldugunu gÃ¶stersin
-						}
-						cout << "toplam veri sayÄ±sÄ±" toplam << endl;
-					*/}
+					{
+						cout<<"Eleman Sayisi: "<<l.getSize()<<endl;
+					}
 					else if (choice == 6)
 					{
 						BagilListe = false; // liste manumuzden cikmak icin gerekli false atamasini yapalim
@@ -493,56 +562,4 @@ int main() // main fonk islemler burada gerceklesecek
 	
 
 
-// dugum sona veri ekleme fonk.
-void SonaEkle(node *veri, node *pNew)
-{
-	while (veri->pNextValue != NULL)
-		veri = veri->pNextValue;
 
-	veri->pNextValue = pNew;
-}
-// bu fonk bir node olusturduk mu otomatik olarak nesneyi olustutrup verileri atiyacak
-/*
-void Bagla()
-{
-	int i =1,ekle;
-	node* value(i)=new node();
-	cout<<"lutfen eklenecek degeri giriniz"<<endl;
-	cin>>ekle;
-	value(i)->veri=ekle;
-	i++;
-}
-*/
-//dugumde araya veri ekleme fonk.
-void ArayaEkle(node *veri, node *pNew, int index) //metod parametreleri belirtme
-{
-	for (int i = 0; i < index - 2; i++)
-		veri = veri->pNextValue;
-
-	pNew->pNextValue = veri->pNextValue; // yeni girilen verinin pointirini bir onceki veriye baglama
-	veri->pNextValue = pNew;			 // yeni girilen degerin adresini ondan onceki verinin adres bolumune atama
-}
-
-//dugumde aradan cikarma fonk.
-node *AradanCikar(node *veri, int index) // metoda parametre alma
-{
-	for (int i = 0; i < index - 2; i++) // donguyle ilerleme
-		veri = veri->pNextValue;
-
-	node *pNew = veri->pNextValue;
-	veri->pNextValue = veri->pNextValue->pNextValue; // burada yaptigimiz bir verinin uzerinden bagli oldugu veriye ulasip ortada kalan veriyi bir nevi devreden cikarmak icin
-
-	return pNew;
-}
-
-//dugumde sondan cÄ±karma fonk.
-node *SondanCikar(node *veri)
-{
-	while (veri->pNextValue->pNextValue != NULL) // son degere kadar ilerlemek icin gerekli dongu
-		veri = veri->pNextValue;
-
-	node *pNew = veri->pNextValue; //nesne olusturma
-	veri->pNextValue = NULL;	   // silinecek olan veriden bir onceki verinin adres bolmunu nullama yani silem
-
-	return pNew;
-}

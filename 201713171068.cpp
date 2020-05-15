@@ -365,17 +365,17 @@ int main() // main fonk islemler burada gerceklesecek
 				bool QueueManu = true; // dongu kurabilmek icin degisken atayalim
 				while (QueueManu)
 				{																// queue menumuzu surekli gormek icin bir dongu yazalim
-					cout << "-------------Queue Menu---------------" << endl;	//menu yazdÄ±r
-					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdÄ±r
-					cout << "/ 1.Kuyruga eleman ekle 			" << endl; //menu yazdÄ±r
-					cout << "/ 2.Kuyruktan  eleman cikar		" << endl; //menu yazdÄ±r
-					cout << "/ 3.Kuyrugu temizle				" << endl; //menu yazdÄ±r
-					cout << "/ 4.Kuyruktaki elemanlari goster  	" << endl;		//menu yazdÄ±r
-					cout << "/ 5.kuyruktaki eleman sayisini goster" << endl;	//menu yazdÄ±r
-					cout << "/ 6.Ana menuye don 				" << endl; //menu yazdÄ±r
-					cout << "--------------------------------------" << endl;	//menu yazdÄ±r
+					cout << "-------------Queue Menu---------------" << endl;	//menu yazdir
+					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdir
+					cout << "/ 1.Kuyruga eleman ekle 			" << endl; //menu yazdir
+					cout << "/ 2.Kuyruktan  eleman cikar		" << endl; //menu yazdir
+					cout << "/ 3.Kuyrugu temizle				" << endl; //menu yazdir
+					cout << "/ 4.Kuyruktaki elemanlari goster  	" << endl;		//menu yazdir
+					cout << "/ 5.kuyruktaki eleman sayisini goster" << endl;	//menu yazdir
+					cout << "/ 6.Ana menuye don 				" << endl; //menu yazdir
+					cout << "--------------------------------------" << endl;	//menu yazdir
 
-					// burada otomatik olarak deÄŸer veriyoruz
+					// burada otomatik olarak deger veriyoruz
 					int choice;	// secim icin degisken ata
 					cin >> choice;	// degiskeni kulanicidan al
 				    if (choice == 1)
@@ -414,19 +414,19 @@ int main() // main fonk islemler burada gerceklesecek
 					}
 				}
 			
-		else if(choice == 3){
+		else if(choice == 3){		// link list giris
 			bool listMenu = true;
 			while(listMenu){
 				cout<<endl;
-				cout<<"************************************************"<<endl;
-				cout<<"1- Listeye eleman ekle"<<endl;
-				cout<<"2- Listeden eleman cikar "<<endl;
-				cout<<"3- Listeyi temizle"<<endl;
-				cout<<"4- Listedeki elemanlari goster "<<endl;
-				cout<<"5- Listedeki eleman sayisini goster"<<endl;
-				cout<<"6- Ana menuye geri don"<<endl;
-				cout<<"************************************************"<<endl;
-				cout<<"Seciminiz: ";
+				cout<<"-------------Linked List Menu---------------"<<endl;//menu yazdir
+				cout<<"/ 1. Listeye eleman ekle"<<endl;//menu yazdir
+				cout<<"/ 2. Listeden eleman cikar "<<endl;//menu yazdir
+				cout<<"/ 3. Listeyi temizle"<<endl;//menu yazdir
+				cout<<"/ 4. Listedeki elemanlari goster "<<endl;//menu yazdir
+				cout<<"/ 5. Listedeki eleman sayisini goster"<<endl;//menu yazdir
+				cout<<"/ 6. Ana menuye geri don"<<endl;//menu yazdir
+				cout<<"-------------------------------------"<<endl;//menu yazdir
+				cout<<"lutfen bir secim yapimniz:";
 				int listChoice;
 				cin>>listChoice;
 				cout<<endl;
@@ -434,25 +434,24 @@ int main() // main fonk islemler burada gerceklesecek
 					bool listAddMenu = true;
 					while(listAddMenu){
 						cout<<endl;
-						cout<<"************************************************"<<endl;
-						cout<<"Bagli Liste icin islem seciniz:"<<endl;
-						cout<<"1- Araya eleman ekle"<<endl;
-						cout<<"2- Sona eleman ekle"<<endl;
-						cout<<"3- Liste islemlerine geri don"<<endl;
-						cout<<"************************************************"<<endl;
-						cout<<"Seciminiz: ";
+						cout<<"-------------Ekleme Menu---------------"<<endl;//menu yazdir
+						cout<<"/ 1. Araya eleman ekle"<<endl;//menu yazdir
+						cout<<"/ 2. Sona eleman ekle"<<endl;//menu yazdir
+						cout<<"/ 3. Liste islemlerine geri don"<<endl;//menu yazdir
+						cout<<"---------------------------------------"<<endl;//menu yazdir
+						cout<<"lutfen bir secim yapimniz: ";
 						int listAddChoice;
 						cin>>listAddChoice;
 						cout<<endl;
 						if(listAddChoice == 1){
 							cout<<"Eklemek istediginiz deger: ";
-							int data;
-							cin>>data;
+							int data;	// degisken tanimladý  altta kullanicidan alacaz degeri
+							cin>>data; // kullanicidan deger alma 
 							cout<<endl;
 							cout<<"Listeye kacinci eleman olarak eklensin? ";
-							int index;
-							cin>>index;
-							if(index<= 0){
+							int index;	
+							cin>>index;	// verinin kacinci indexe eklenecegini aliyoruz
+							if(index<= 0){		// eger naslangic degerimiz 0dan kucuk ise hata versin 
 								cout<<"Gecerli Bir Deger Giriniz!"<<endl;
 								continue;
 							}
@@ -476,26 +475,27 @@ int main() // main fonk islemler burada gerceklesecek
 						}
 						
 						else{
-							cout<<"Geçersiz Giris!"<<endl;
+							cout<<"Gecersiz Giris!"<<endl;
 							continue;
 						}
 					}
 				}
-				else if(listChoice == 2){
+				else if(listChoice == 2)
+				{							
 					bool listRemoveMenu = true;
 					while(listRemoveMenu){
-						cout<<endl;
-						cout<<"************************************************"<<endl;
-						cout<<"Bagli Liste icin islem seciniz:"<<endl;
-						cout<<"1- Aradan eleman cikar"<<endl;
-						cout<<"2- Sondan eleman cikar"<<endl;
-						cout<<"3- Liste islemlerine geri don"<<endl;
-						cout<<"************************************************"<<endl;
-						cout<<"Seciminiz: ";
+						cout<<endl;	
+						cout<<"--------------cikarma Manu--------------"<<endl;		// cýikarma manu yazdýrma
+						cout<<"/ 1. Aradan eleman cikar"<<endl;//menu yazdir
+						cout<<"/ 2. Sondan eleman cikar"<<endl;//menu yazdir
+						cout<<"/ 3. Liste islemlerine geri don"<<endl;//menu yazdir
+						cout<<"----------------------------------------"<<endl;//menu yazdir
+						cout<<"lutfen bir secim yapimniz: ";
 						int listRemoveChoice;
-						cin>>listRemoveChoice;
+						cin>>listRemoveChoice; // kulanýcý girisi seçme 
 						cout<<endl;
-						if(listRemoveChoice == 1){
+						if(listRemoveChoice == 1)
+						{
 							cout<<"Listeden kacinci eleman olarak cikarilsin? ";
 							int index;
 							cin>>index;
@@ -523,37 +523,41 @@ int main() // main fonk islemler burada gerceklesecek
 							listRemoveMenu = false;
 						}
 						else{
-							cout<<"Geçersiz Giris!"<<endl;
+							cout<<"Gecersiz Giris!"<<endl;
 							continue;
 						}
 				}
 			}
-				else if(listChoice == 3){
-					l.makeEmpty();
+				else if(listChoice == 3)
+				{
+					l.makeEmpty();		//listeyi bosaltma metodu
 				}
-				else if(listChoice == 4){
-					l.print();
+				else if(listChoice == 4)
+				{
+					l.print(); 			//listedeki verileri yazacak metodu 
+ 				}
+				else if(listChoice == 5)
+				{
+					cout<<"Eleman Sayisi: "<<l.getSize()<<endl; // eleman sayisini yazdiracak metod 
 				}
-				else if(listChoice == 5){
-					cout<<"Eleman Sayisi: "<<l.getSize()<<endl;
-				}
-				else if(listChoice == 6){
-					listMenu = false;
+				else if(listChoice == 6)
+				{
+					listMenu = false;	// listeleme menusunden cikis metodu
 				}
 				else{
-					cout<<"Geçersiz Giris!"<<endl;
+					cout<<"Gecersiz Giris!"<<endl;
 					continue;
 				}
 			}
 	
 		}
 		
-		else if(choice == 4)
+		else if(choice == 4)	// secim olarak ciks secildimi yapilacak islem
 		{
 			MainManu = false;
 		}
-		else{
-			cout<<"Geçersiz Giris!"<<endl;
+		else{	
+			cout<<"Gecersiz Giris!"<<endl;
 			continue;
 		}
 	return 0;

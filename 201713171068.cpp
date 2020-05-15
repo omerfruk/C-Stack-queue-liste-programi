@@ -443,7 +443,7 @@ int main() // main fonk islemler burada gerceklesecek
 						int listAddChoice;
 						cin>>listAddChoice;
 						cout<<endl;
-						if(listAddChoice == 1){
+						if(listAddChoice == 1){ // eger araya eklemeyi secerse 
 							cout<<"Eklemek istediginiz deger: ";
 							int data;	// degisken tanimladý  altta kullanicidan alacaz degeri
 							cin>>data; // kullanicidan deger alma 
@@ -456,22 +456,23 @@ int main() // main fonk islemler burada gerceklesecek
 								continue;
 							}
 							cout<<endl;
-							try{
-								l.push_at(l.begin(),data,index);
-							} catch(const char* ex){
+							try{ 	//hata yakalama ayýklama bir deger mutlaka true dondurecek bize onu yakalamaya calisiyoruz
+								l.push_at(l.begin(),data,index);	
+							} catch(const char* ex){		// yukarda dedigim gibi ikisinden birinin hatali olmasi lazým ve mutlaka biri true donecek 
 								cout<<ex<<endl;
 							}
 
 						}
-						else if(listAddChoice == 2){
+						else if(listAddChoice == 2){	// sona eklemeyi secerse 
 							cout<<"Eklemek istediginiz deger: ";
-							int data;
-							cin>>data;
-							cout<<endl;
-							l.push_back(data);
+							int data;		// kullanici girisi icin degisken 	
+							cin>>data;		// kullanicidan veri girisini aldik
+							cout<<endl;		
+							l.push_back(data);			// metod yardimiyla veriyi listeye ekledik
 						}
-						else if(listAddChoice == 3){
-							listAddMenu = false;
+						else if(listAddChoice == 3)		// listeleme manusunden cikis yapiyoruz
+						{	
+							listAddMenu = false;		// while icindeki degeri fasle yapiyoruz dursun diye
 						}
 						
 						else{
@@ -480,7 +481,7 @@ int main() // main fonk islemler burada gerceklesecek
 						}
 					}
 				}
-				else if(listChoice == 2)
+				else if(listChoice == 2)	// cikarma icin secim yapilirsa 
 				{							
 					bool listRemoveMenu = true;
 					while(listRemoveMenu){
@@ -494,36 +495,38 @@ int main() // main fonk islemler burada gerceklesecek
 						int listRemoveChoice;
 						cin>>listRemoveChoice; // kulanýcý girisi seçme 
 						cout<<endl;
-						if(listRemoveChoice == 1)
+						if(listRemoveChoice == 1)	// aradan eleman cikarma blogu
 						{
 							cout<<"Listeden kacinci eleman olarak cikarilsin? ";
-							int index;
-							cin>>index;
+							int index;				
+							cin>>index;			//	kullanicidan kacinci elemanin cikarilacagini bizlere soyluyor 
 							if(index<= 0){
 								cout<<"Gecerli Bir Deger Giriniz!"<<endl;
 								continue;
 							}
 
 							cout<<endl;
-							try{
+							try{					// yukarida tanimlamasini yaptim burda gerekmedigini dusunuyorm
 								l.pop_at(l.begin(),index);
 							} catch(const char* ex){
 								cout<<ex<<endl;
 							}
 							
 						}
-						else if(listRemoveChoice == 2){
+						else if(listRemoveChoice == 2)		// sondan cikarma blogu 
+						{
 							try{
 								l.pop_back();
-							} catch(const char* ex){
+							} catch(const char* ex){	// yukarida tanimlamasini yaptim burda gerekmedigini dusunuyorm
 								cout<<ex<<endl;
 							}
 						}
-						else if(listRemoveChoice == 3){
-							listRemoveMenu = false;
+						else if(listRemoveChoice == 3)
+						{
+							listRemoveMenu = false; // menunun disina cikmak icin 
 						}
 						else{
-							cout<<"Gecersiz Giris!"<<endl;
+							cout<<"Gecersiz Giris!"<<endl; // else durumlari 
 							continue;
 						}
 				}

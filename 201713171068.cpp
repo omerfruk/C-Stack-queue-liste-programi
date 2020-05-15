@@ -148,6 +148,15 @@ public:
 		}
 		return size;
 	}
+		
+		void deleteAll()// kujyruyktaki verilerin hepsini silmek icin
+	{
+		while (isEmpty() == false)
+		{
+			Delete(); // Stackimiz bos olmadigi surece verileri silecez 1 bir.
+		}
+		root = NULL; // bosalan Stackte baslangici null a esitlicez
+	}
 	
 };
 // dugum classini burda belirtiyoruz ve nesne ureterek kullanicaz
@@ -232,18 +241,18 @@ int main() // main fonk islemler burada gerceklesecek
 				cin >> choice;												// secimi alalaim kullanicidan
 					if (choice==1){
 						int input;	   // kullanicinin girmek istedigi deger icin degisken
-						cout<<"lutfen eklemek istediginiz degeri giriniz"<<endl;
+						cout<<"<- lutfen eklemek istediginiz degeri giriniz->"<<endl;
 						cin >> input;  // kullanicidan istedigi degeri alalim
 						s.push(input); //degeri metotla gonderelim
 						cout << "Stackge " << input << " degeri eklendi" << endl;
 						}
 					else if(choice == 2){
 						s.pop(); // metodla cikrama islemini yapalim
-						cout << "Stackten eleman cikarildi" << endl;
+						cout << "<-Stackten eleman cikarildi->" << endl;
 						}
 					else if(choice == 3){
 						s.deleteAll(); // metodu ile tum verileri silelim
-						cout << "Stack temizlendi..." << endl;
+						cout << "<-Stack temizlendi...->" << endl;
 						}
 					else if(choice==4){
 						s.writeAll(); // metodu ile tum verileri yazdiralim
@@ -252,12 +261,12 @@ int main() // main fonk islemler burada gerceklesecek
 						cout << "Stackteki verilerin boyutu " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
 						}
 					else if(choice == 6){
-						StackManu = false; // ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
+						StackManu = false; // ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
 						}
 					
 					else{ // olasi istenmeyen tum durumlari ele alp yonlendirilmesini yapalim
 						cout << "girilen deger istenilenler arasina bulunmamaktadir..." << endl;
-						StackManu = false; //ana menu ye donmek için donguyu sonlandiracak atamayi yapalim
+						StackManu = false; //ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
 					}	
 				}
 	}
@@ -291,32 +300,33 @@ int main() // main fonk islemler burada gerceklesecek
 				    if (choice == 1)
 					{
 						int data;
-						cout<<"lutfen eklemek istediginiz deger igiriniz"<<endl;	  //kullanicidan isteyecegimiz degerin atanmasi
+						cout<<"<-lutfen eklemek istediginiz degeri giriniz->"<<endl;	  //kullanicidan isteyecegimiz degerin atanmasi
 						cin >> data;									  // degiskenin alinmasi
 						q.Add(data);									  // metodla istenen degerin eklenmesi kuyruk mantigi oldugundan ilk giren veri ilk cikar yani ekmek sirasi gibi yer belirtemeyiz
-						cout << "kuyruga degeri"<< data<< " eklendi " << endl; //eklenen degeri gosteme
+						cout << "kuyruga "<< data<<"degeri eklendi " << endl; //eklenen degeri gosteme
 					}
 					else if(choice == 2){
 						q.Delete(); //metod la deger silme kuyruk yapisi oldugundan bastan cikma olur deger vermeyiz cikarma dedik mi en bastan cikar ekmek sirasi gibi ilk gelen ilk cikar
-						cout << "islem gerceklesiyor...\n Kalan elemanlar" << endl;
+						cout << "<-islem gerceklesiyor...->\nKalan elemanlar" << endl;
 						q.writeAll(); // metod yardimiyla tum vrileri yazdiralim
 					}
 					else if (choice == 3){
-						q.Delete(); // metod yardimiyla tum verileri silelim
-						cout << "kuyruk temizleniyor..." << endl;
+						q.deleteAll(); // metod yardimiyla tum verileri silelim
+						cout << "<-kuyruk temizleniyor...->" << endl;
 					}
 					else if (choice == 4){
+						cout<<"<-kuyryktaki elemeanlar->"<<endl;
 						q.writeAll(); // metod yardimi ile tum degerleri yazdiralim
 					}
 					else if (choice == 5){
-						cout << "kuyruktaki eleman sayisi \n"
+						cout << "<-kuyruktaki eleman sayisi-> \n"
 							 << q.getSize() << endl; // metod yarimiyla dizinin eleman sayisina bakalim
 					}
 					else if (choice == 6){
 						QueueManu = false; // donguden cikabilmek icin gereken false atamasini yapalim
 					}
 					else {
-						cout << "boyle bir islem belitrilmemistir" << endl; //yanlis secim uyarisi
+						cout << "boyle bir islem belitrilmemistir\n l�tfen tekrar deneyiniz." << endl; //yanlis secim uyarisi
 						QueueManu = false;									// girilen yanklis secimleri ana menuye gondererek hatalardan kacinalim
 					
 					}

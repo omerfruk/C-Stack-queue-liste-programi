@@ -1,3 +1,16 @@
+/*
+*
+*Omer Faruk Tasdemir
+*201713171068 2.Sinif 1.Ogretim
+*Veri yapýlarý Vize Ödevi
+*Projemin ilerleyiþini git hesabýmdan kontrol edebilirsiniz
+*https://github.com/omerfruk/C-Stack-queue-liste-programi.git
+*
+*/
+
+
+
+
 #include <iostream>
 using namespace std;
 

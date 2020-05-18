@@ -1,14 +1,12 @@
 /*
 *
-*Omer Faruk Tasdemir
-*201713171068 2.Sinif 1.Ogretim
-*Veri yapýlarý Vize Ödevi
-*Projemin ilerleyiþini git hesabýmdan kontrol edebilirsiniz
-*https://github.com/omerfruk/C-Stack-queue-liste-programi.git
+*		Omer Faruk Tasdemir
+*		201713171068 2.Sinif 1.Ogretim
+*		Veri yapýlarý Vize Ödevi
+*		Projemin ilerleyiþini git hesabýmdan kontrol edebilirsiniz
+*		https://github.com/omerfruk/C-Stack-queue-liste-programi.git
 *
 */
-
-
 
 
 #include <iostream>
@@ -201,19 +199,19 @@ class LinkedList{//Linked List sinif yapisi
 		
 		void print(){//Listeyi ekrana yazdirdigimiz method
 			Node* temp = begin();//Temp isimli gecici bir pointer olusturup liste baslangicina esitliyoruz
-			cout<<"List: ('{': Baslangic, '}': Bitis)"<<endl;//Bilgilendirme
-			cout<<"{";//Bilgilendirme
+			cout<<"List: ('<': Baslangic, '>': Bitis)"<<endl;//Bilgilendirme
+			cout<<"<";//Bilgilendirme
 			while(temp != end()){//Bütün listeyi dolasiyoruz
 				cout<<temp->data<<",";//Listedeki elemanlari tek tek ekrana yazdiriyoruz
 				temp = temp->next;//Yazdirdigimiz elemandan bir sonraki elemana geciyoruz
 			}
-			cout<<"}"<<endl;//Bilgilendirme
+			cout<<">"<<endl;//Bilgilendirme
 		}
 		void pop_at(Node* pStart, int index){//Belirli bir index numarasindaki elemani listeden çikarmamiza yarayan method
 			if(isEmpty())
-				throw "Error LinkedList::pop_at() for List is empty!";
+				throw "listemiz bostur";
 			if(index > getSize())
-				throw "Error LinkedList::pop_at() for index is out of bounds!";
+				throw "listemizin boyutunu astiniz";
 			for(int i = 0; i<index-2;i++){//Girilen 'index'inci elemandan bir önceki elemani buluyoruz
 				pStart = pStart->next;//Çikarilmak istenen elemandan bir önceki elemanin next ile gösterdigi adresi aliyoruz
 			}
@@ -225,7 +223,7 @@ class LinkedList{//Linked List sinif yapisi
 		
 		void pop_back(){//Listenin sonundaki elemani çikarmamiza yarayan method
 			if(isEmpty()){//Listenin bos olup olmadigini kontrol ediyoruz
-				throw "Error List::pop_back() for List is empty!";//Liste bossa çikarilacak eleman yoktur bir exception firlatiyoruz
+				throw "listemiz bostur ";//Liste bossa çikarilacak eleman yoktur bir exception firlatiyoruz
 			}
 			if(begin()->next == end()){//Listede tek eleman olup olmadigini kontrol ediyoruz
 				cout<<"Listeden Son Elaman Cikariliyor.."<<endl;
@@ -251,7 +249,7 @@ class LinkedList{//Linked List sinif yapisi
 		
 		void push_at(Node* pStart,const int& data, int index){//Belirli bir indexe, istenilen datayi eklememize yarayan method
 			if(index > getSize())
-				throw "Error LinkedList::push_at() for index is out of bounds";
+				throw "listemizin boyutunu astiniz";
 			Node* pNew = new Node(data);//Parametre olarak gelen data ile yeni bir Node olusturuyoruz
 			for(int i = 0; i<index-2;i++){//Istenilen index degerininden bir önceki elemani buluyoruz
 				pStart = pStart->next;//Istenilen indexten bir önceki elemanin gösterdigi next adresini aliyoruz
@@ -310,14 +308,7 @@ int main() // main fonk islemler burada gerceklesecek
 		int choice;												//secim icin bir degisken alalim
 		cin >> choice;												// degiskene kullanicidan deger isteyelim
 
-		if (choice==1){
-				cout<<"otomatik veriler atanmýstýr"<<endl;
-				cout<<"Stack yapisini en bastan duzenlemek icin lutfen temizleyin"<<endl;
-				for (int i = 0; i <= 5; i++)
-				{				  // dongu ile veri yazdiralim	
-					s.push(i+1); // metodumuzla veriyi gonderelim
-				}
-				
+		if (choice==1){				
 				bool StackManu = true; //Stack menusunde kalmak icin degisken tanimlayalim
 				while (StackManu)
 				{					// menude kalmak icin dongu kuralÄ±m
@@ -366,15 +357,7 @@ int main() // main fonk islemler burada gerceklesecek
 	}
 	
 				else if(choice == 2)// kuyruk yapisi baslangici
-					{					   
-					cout<<"otomatik veriler atanmistir"<<endl;
-					cout<<"kuyruk yapisini en bastan kurmak icin lutfen temizleyiniz."<<endl;
-					int data; // ekleme islemi icin degisken ata
-					for (int i = 0; i <= 5; i++)
-					{				 // dongu kur
-						data = i;	 // degiskeni dongunun adedine esitle
-						q.Add(data); // metodla ekleme yap
-					}
+					{						   
 				bool QueueManu = true; // dongu kurabilmek icin degisken atayalim
 				while (QueueManu)
 				{																// queue menumuzu surekli gormek icin bir dongu yazalim

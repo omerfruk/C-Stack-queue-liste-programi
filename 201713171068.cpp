@@ -340,11 +340,11 @@ int main() // main fonk islemler burada gerceklesecek
 						cout << "<-Stack temizlendi...->" << endl;
 						}
 					else if(choice==4){
-						cout<<endl;
+						cout<<"Yigindaki elemanlar "<<endl;// yýgýndaki elemanlarin baþlangici girilen degerle ayrildi 
 						s.writeAll(); // metodu ile tum verileri yazdiralim
 						}
 					else if(choice == 5){
-						cout << "<-Stackteki verilerin boyutu->" << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
+						cout << "Stackteki verilerin boyutu-> " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
 						}
 					else if(choice == 6){
 						StackManu = false; // ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim

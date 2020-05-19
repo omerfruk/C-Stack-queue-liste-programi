@@ -381,7 +381,7 @@ int main() // main fonk islemler burada gerceklesecek
 						cout<<"<-lutfen eklemek istediginiz degeri giriniz->"<<endl;	  //kullanicidan isteyecegimiz degerin atanmasi
 						cin >> data;									  // degiskenin alinmasi
 						q.Add(data);									  // metodla istenen degerin eklenmesi kuyruk mantigi oldugundan ilk giren veri ilk cikar yani ekmek sirasi gibi yer belirtemeyiz
-						cout << "kuyruga "<< data<<"degeri eklendi " << endl; //eklenen degeri gosteme
+						cout << "kuyruga "<< data<<" degeri eklendi " << endl; //eklenen degeri gosteme
 					}
 					else if(choice == 2){
 						q.Delete(); //metod la deger silme kuyruk yapisi oldugundan bastan cikma olur deger vermeyiz cikarma dedik mi en bastan cikar ekmek sirasi gibi ilk gelen ilk cikar

@@ -295,8 +295,8 @@ int main() // main fonk islemler burada gerceklesecek
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
-	bool MainManu = true; // ana menuye donmek icin gerekli degiskenimiz
-	while (MainManu)
+	int MainManu = 1; // ana menuye donmek icin gerekli degiskenimiz
+	while (MainManu != 0)
 	{																// surekli bu menude kalmak icin gerekli dongu
 		cout << "----------------Menu------------------" << endl;	//menu yazdiralim
 		cout << " Yapmak istediginiz uygulamayi seciniz:" << endl;	//menu yazdiralim
@@ -353,7 +353,7 @@ int main() // main fonk islemler burada gerceklesecek
 					else{ // olasi istenmeyen tum durumlari ele alp yonlendirilmesini yapalim
 						cout << "girilen deger istenilenler arasina bulunmamaktadir..." << endl;
 						StackManu = false; //ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
-					}	
+						}	
 				}
 	}
 	
@@ -554,13 +554,13 @@ int main() // main fonk islemler burada gerceklesecek
 		
 		else if(choice == 4)	// secim olarak ciks secildimi yapilacak islem
 		{
-			MainManu = false;
+			MainManu = 0;
 		}
 		else{	
 			cout<<"Gecersiz Giris!"<<endl;
 			continue;
 		}
-	return 0;
+	
 	}
 }
 	

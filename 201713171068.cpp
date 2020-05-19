@@ -295,8 +295,7 @@ int main() // main fonk islemler burada gerceklesecek
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
-	int MainManu = 1; // ana menuye donmek icin gerekli degiskenimiz
-	while (MainManu != 0)
+	while (true) // surekli dongude kalmasi icin 
 	{																// surekli bu menude kalmak icin gerekli dongu
 		cout << "----------------Menu------------------" << endl;	//menu yazdiralim
 		cout << " Yapmak istediginiz uygulamayi seciniz:" << endl;	//menu yazdiralim
@@ -307,11 +306,10 @@ int main() // main fonk islemler burada gerceklesecek
 		cout << "--------------------------------------" << endl;	//menu yazdiralim
 		int choice;												//secim icin bir degisken alalim
 		cin >> choice;												// degiskene kullanicidan deger isteyelim
-
-		if (choice==1){				
-				bool StackManu = true; //Stack menusunde kalmak icin degisken tanimlayalim
-				while (StackManu)
-				{					// menude kalmak icin dongu kuralÄ±m
+		if (choice==1)
+		{				
+				while (true)// surekli dongude kalmasi icin 
+				{				
 				// burada otomatik olarak deÄŸer veriyoruz
 				cout << "-------------Stack Menu---------------" << endl;	//menu yazdiralim
 				cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdiralim
@@ -347,20 +345,19 @@ int main() // main fonk islemler burada gerceklesecek
 						cout << "Stackteki verilerin boyutu-> " << s.getSize()+1 << endl; // metodu kullanarak dizinin boyutunu gosterelim
 						}
 					else if(choice == 6){
-						StackManu = false; // ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
+						break; // ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
 						}
 					
 					else{ // olasi istenmeyen tum durumlari ele alp yonlendirilmesini yapalim
 						cout << "girilen deger istenilenler arasina bulunmamaktadir..." << endl;
-						StackManu = false; //ana menu ye donmek icin donguyu sonlandiracak atamayi yapalim
+						break; //ana menu ye donmek icin donguyu sonlandiralim
 						}	
 				}
 	}
 	
 				else if(choice == 2)// kuyruk yapisi baslangici
 					{						   
-				bool QueueManu = true; // dongu kurabilmek icin degisken atayalim
-				while (QueueManu)
+				while (true)// surekli dongude kalmasi icin 
 				{																// queue menumuzu surekli gormek icin bir dongu yazalim
 					cout << "-------------Queue Menu---------------" << endl;	//menu yazdir
 					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdir
@@ -401,19 +398,19 @@ int main() // main fonk islemler burada gerceklesecek
 							 << q.getSize() << endl; // metod yarimiyla dizinin eleman sayisina bakalim
 					}
 					else if (choice == 6){
-						QueueManu = false; // donguden cikabilmek icin gereken false atamasini yapalim
+						break; // donguden cikabilmek icin  sonlandirma koyalim 
 					}
 					else {
 						cout << "boyle bir islem belitrilmemistir\n lütfen tekrar deneyiniz." << endl; //yanlis secim uyarisi
-						QueueManu = false;									// girilen yanklis secimleri ana menuye gondererek hatalardan kacinalim
+						break;// girilen yanklis secimleri ana menuye gondererek hatalardan kacinalim
 					
 					}
 					}
 				}
 			
 		else if(choice == 3){		// link list giris
-			bool listMenu = true;
-			while(listMenu){
+			while(true)// surekli dongude kalmasi icin 
+			{
 				cout<<endl;
 				cout<<"-------------Linked List Menu---------------"<<endl;//menu yazdir
 				cout<<"/ 1. Listeye eleman ekle"<<endl;//menu yazdir
@@ -428,8 +425,8 @@ int main() // main fonk islemler burada gerceklesecek
 				cin>>listChoice;
 				cout<<endl;
 				if(listChoice == 1){
-					bool listAddMenu = true;
-					while(listAddMenu){
+				
+					while(true){// surekli dongude kalmasi icin 
 						cout<<endl;
 						cout<<"-------------Ekleme Menu---------------"<<endl;//menu yazdir
 						cout<<"/ 1. Araya eleman ekle"<<endl;//menu yazdir
@@ -469,7 +466,7 @@ int main() // main fonk islemler burada gerceklesecek
 						}
 						else if(listAddChoice == 3)		// listeleme manusunden cikis yapiyoruz
 						{	
-							listAddMenu = false;		// while icindeki degeri fasle yapiyoruz dursun diye
+							break;		// while sonlandiriyoruz
 						}
 						
 						else{
@@ -480,8 +477,8 @@ int main() // main fonk islemler burada gerceklesecek
 				}
 				else if(listChoice == 2)	// cikarma icin secim yapilirsa 
 				{							
-					bool listRemoveMenu = true;
-					while(listRemoveMenu){
+				
+					while(true){// surekli dongude kalmasi icin 
 						cout<<endl;	
 						cout<<"--------------cikarma Manu--------------"<<endl;		// cýikarma manu yazdýrma
 						cout<<"/ 1. Aradan eleman cikar"<<endl;//menu yazdir
@@ -520,7 +517,7 @@ int main() // main fonk islemler burada gerceklesecek
 						}
 						else if(listRemoveChoice == 3)
 						{
-							listRemoveMenu = false; // menunun disina cikmak icin 
+							break; // menunun disina cikmak icin 
 						}
 						else{
 							cout<<"Gecersiz Giris!"<<endl; // else durumlari 
@@ -542,7 +539,7 @@ int main() // main fonk islemler burada gerceklesecek
 				}
 				else if(listChoice == 6)
 				{
-					listMenu = false;	// listeleme menusunden cikis metodu
+					break;	// listeleme menusunden cikis metodu
 				}
 				else{
 					cout<<"Gecersiz Giris!"<<endl;
@@ -554,7 +551,7 @@ int main() // main fonk islemler burada gerceklesecek
 		
 		else if(choice == 4)	// secim olarak ciks secildimi yapilacak islem
 		{
-			MainManu = 0;
+		break;
 		}
 		else{	
 			cout<<"Gecersiz Giris!"<<endl;

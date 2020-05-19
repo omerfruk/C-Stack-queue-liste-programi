@@ -340,6 +340,7 @@ int main() // main fonk islemler burada gerceklesecek
 						cout << "<-Stack temizlendi...->" << endl;
 						}
 					else if(choice==4){
+						cout<<endl;
 						s.writeAll(); // metodu ile tum verileri yazdiralim
 						}
 					else if(choice == 5){

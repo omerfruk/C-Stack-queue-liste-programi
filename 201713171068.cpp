@@ -295,11 +295,13 @@ class IkiliAgac		//binary tree yapimizi yazalim
 	public:
 		struct AgacDugum		//struct yapoýmýzý kuralým 
 		{
-			int deger;		// degerimiz
+			int deger;	       	// degerimiz
 			AgacDugum *sol;		//sola eklemek icin pointer  
 			AgacDugum *sag;		//saga eklemek icin pointer 	
 		};
+		
 		AgacDugum *kok;	//baslangýc yerimiz kokumuz
+		
 		IkiliAgac()	// kurucu fonk
 		{
 			kok=NULL;
@@ -312,15 +314,15 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		void PreOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
 		void PostOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
 		
-		void DugumGorInOrder()		//dugumu gormek icin
+		void DugumGorInOrderYaz()		//dugumu gormek icin
 		{
 			InOrderDolasim(kok);		//methodu cagiralim
 		}
-		void DugumGorPreOrder()	//dugumu gormek icin
+		void DugumGorPreOrderYaz()	//dugumu gormek icin
 		{
 			PreOrderDolasim(kok);		//methodu cagiralim
 		}
-		void DugumGorPostOrder()		//dugumu gormek icin
+		void DugumGorPostOrderYaz()		//dugumu gormek icin
 		{
 			PostOrderDolasim(kok);		//methodu cagiralim
 		}	
@@ -409,11 +411,11 @@ int main() // main fonk islemler burada gerceklesecek
     agac.dugumEkle(5);
     cout<<"degerler eklendi"<<endl;
     cout<<"InOrderDolasim"<<endl;
-    agac.InOrderDolasim();
+    agac.DugumGorInOrderYaz();
     cout<<"PostOrderDolasim"<<endl;
-    agac.PostOrderDolasim();
+    agac.DugumGorPreOrderYaz();
     cout<<"PreOrderDolasim"<<endl;
-    agac.PreOrderDolasim();
+    agac.DugumGorPostOrderYaz();
 return 0;
 
 /*

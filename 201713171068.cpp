@@ -340,13 +340,13 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 	}else{	// varsa 
 	
 		dugumPtr = kok;	// kokun adresini fugumPrt ye atayalim 
-		while (DugumPtr != kok)		// dugum varsa yapilacaklar
+		while (dugumPtr != kok)		// dugum varsa yapilacaklar
 		{
 			if (sayi < dugumPtr->deger)	// sola ekleme deger kucukse 
 			{
 				if(dugumPtr->sol)	// solda bir eleman varsa 
 				{
-				dugumPtr = dugumPtr-> sol		//ata
+				dugumPtr = dugumPtr-> sol;		//ata
 				}else{	// sol yoksa
 					dugumPtr-> sol = yeniDugum;	// sol kendin ol
 					break;
@@ -375,7 +375,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			InOrderDolasim(dugumPtr->sag);	
 		}
 				
-		void IkiliAgac :: PreOrderDolasim(AgacDugum *dugumPtr);		
+		void IkiliAgac :: PreOrderDolasim(AgacDugum *dugumPtr)	
 		{
 			// kok -> sol ->sag
 			cout<<dugumPtr->deger<<endl;		// koku yaz
@@ -383,7 +383,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			InOrderDolasim(dugumPtr->sag);		//sagi al 
 		}
 		
-		void IkiliAgac :: PostOrderDolasim(AgacDugum *dugumPtr);	
+		void IkiliAgac :: PostOrderDolasim(AgacDugum *dugumPtr)	
 		{
 		    // sol -> sag ->kok 
 			InOrderDolasim(dugumPtr->sol);

@@ -328,13 +328,21 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 				if(dugumPtr->sol)	// solda bir eleman varsa 
 				{
 				dugumPtr = dugumPtr-> sol		//ata
-				}else{	
+				}else{	// sol yoksa
 					dugumPtr-> sol = yeniDugum;	// sol kendin ol
 					break;
 				}
 			}else if(sayi > dugumPtr->deger){// sayi büyükse 
-				
-			}
+				if(dugumPtr->sag){	// sagi varsa 
+					dugumPtr = dugumPtr->sag;	//yeni degerimiz sag olsun 
+				}else{	//yoksa
+					dugumPtr->sag = yeniDugum;	// sag dugum olsun 
+					break;
+				}
+			}else{	//esitse 
+				cout<<"Agacta zaten bu deger var "<<endl;
+				break;
+			} 
 		}	
 	}
 	

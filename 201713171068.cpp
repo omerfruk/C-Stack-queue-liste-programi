@@ -306,6 +306,39 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		}
 		void dugumEkle(int);
 };
+void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
+{
+	AgacDugum *yeniDugum,*dugumPtr; 	// 2 farkli pointer olusturduk birisi agac ici gezimler icin digeri yeni dugumu isaret edicek
+	
+	yeniDugum = new AgacDugum;
+	yeniDugum->deger=sayi;
+	yeniDugum->sol= NULL;
+	yeniDugum->sag= NULL;
+	
+	if(!kok)//kok varmý ?
+	{
+		kok = yeniDugum;	// yoksa
+	}else{	// varsa 
+	
+		dugumPtr = kok;	// kokun adresini fugumPrt ye atayalim 
+		while (DugumPtr != kok)		// dugum varsa yapilacaklar
+		{
+			if (sayi < dugumPtr->deger)	// sola ekleme deger kucukse 
+			{
+				if(dugumPtr->sol)	// solda bir eleman varsa 
+				{
+				dugumPtr = dugumPtr-> sol		//ata
+				}else{	
+					dugumPtr-> sol = yeniDugum;	// sol kendin ol
+					break;
+				}
+			}else if(sayi > dugumPtr->deger){// sayi büyükse 
+				
+			}
+		}	
+	}
+	
+}
 
 
 

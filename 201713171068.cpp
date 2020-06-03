@@ -340,7 +340,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 	}else{	// varsa 
 	
 		dugumPtr = kok;	// kokun adresini fugumPrt ye atayalim 
-		while (dugumPtr != kok)		// dugum varsa yapilacaklar
+		while (dugumPtr != NULL)		// dugum varsa yapilacaklar
 		{
 			if (sayi < dugumPtr->deger)	// sola ekleme deger kucukse 
 			{
@@ -370,30 +370,53 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 		void IkiliAgac :: InOrderDolasim(AgacDugum *dugumPtr)
 		{
 			// sol -> kok -> sag
+			if(dugumPtr){
 			InOrderDolasim(dugumPtr->sol);
 			cout<<dugumPtr->deger<<endl;
 			InOrderDolasim(dugumPtr->sag);	
+			}
 		}
 				
 		void IkiliAgac :: PreOrderDolasim(AgacDugum *dugumPtr)	
 		{
 			// kok -> sol ->sag
+			if(dugumPtr){
 			cout<<dugumPtr->deger<<endl;		// koku yaz
-			InOrderDolasim(dugumPtr->sol);		//solu al
-			InOrderDolasim(dugumPtr->sag);		//sagi al 
+			PreOrderDolasim(dugumPtr->sol);		//solu al
+			PreOrderDolasim(dugumPtr->sag);		//sagi al 
+			}
 		}
 		
 		void IkiliAgac :: PostOrderDolasim(AgacDugum *dugumPtr)	
 		{
 		    // sol -> sag ->kok 
-			InOrderDolasim(dugumPtr->sol);
-			InOrderDolasim(dugumPtr->sag);
+		    if(dugumPtr){
+			PostOrderDolasim(dugumPtr->sol);
+			PostOrderDolasim(dugumPtr->sag);
 			cout<<dugumPtr->deger<<endl;
+			}
 		}
 
 
 int main() // main fonk islemler burada gerceklesecek
 {
+	IkiliAgac agac;
+    cout<<"eleman ekleniyor"<<endl;
+    agac.dugumEkle(1);
+    agac.dugumEkle(2);
+    agac.dugumEkle(3);
+    agac.dugumEkle(4);
+    agac.dugumEkle(5);
+    cout<<"degerler eklendi"<<endl;
+    cout<<"InOrderDolasim"<<endl;
+    agac.InOrderDolasim();
+    cout<<"PostOrderDolasim"<<endl;
+    agac.PostOrderDolasim();
+    cout<<"PreOrderDolasim"<<endl;
+    agac.PreOrderDolasim();
+return 0;
+
+/*
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
@@ -660,7 +683,7 @@ int main() // main fonk islemler burada gerceklesecek
 			continue;
 		}
 	
-	}
+	}*/
 }
 	
 

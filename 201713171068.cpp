@@ -290,6 +290,25 @@ ve baglamalarÄ± otomatik olarak yapilsin fakat tam olarak yapamadim
 }
 */
 
+class IkiliAgac		//binary tree yapimizi yazalim
+{
+	public:
+		struct AgacDugum		//struct yapoýmýzý kuralým 
+		{
+			int deger;		// degerimiz
+			AgacDugum *pSol;		//sola eklemek icin pointer  
+			AgacDugum *pSag;		//saga eklemek icin pointer 	
+		};
+		AgacDugum *kok;	//baslangýc yerimiz kokumuz
+		IkiliAgac()	// kurucu fonk
+		{
+			kok=NULL;
+		}
+		void dugumEkle(int);
+};
+
+
+
 int main() // main fonk islemler burada gerceklesecek
 {
 	Queue q;  // nesne olustur

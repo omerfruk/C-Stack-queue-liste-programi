@@ -305,6 +305,25 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			kok=NULL;
 		}
 		void dugumEkle(int);
+		
+		
+		// lazim olacak fonksiyonlar 
+		void InOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
+		void PreOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
+		void PostOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
+		
+		void DugumGorInOrder();		//dugumu gormek icin
+		{
+			InOrderDolasim(kok);		//methodu cagiralim
+		}
+		void DugumGorPreOrder();		//dugumu gormek icin
+		{
+			PreOrderDolasim(kok);		//methodu cagiralim
+		}
+		void DugumGorPostOrder();		//dugumu gormek icin
+		{
+			PostOrderDolasim(kok);		//methodu cagiralim
+		}	
 };
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 {
@@ -348,6 +367,18 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 	
 }
 
+		void IkiliAgac :: InOrderDolasim(AgacDugum *dugumPtr)
+		{
+			
+		}		
+		void IkiliAgac :: PreOrderDolasim(AgacDugum *dugumPtr);		
+		{
+			
+		}
+		void IkiliAgac :: PostOrderDolasim(AgacDugum *dugumPtr);	
+		{
+			
+		}
 
 
 int main() // main fonk islemler burada gerceklesecek

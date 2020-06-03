@@ -307,7 +307,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			kok=NULL;
 		}
 		void dugumEkle(int);
-		
+		bool DugumAra(int);
 		
 		// lazim olacak fonksiyonlar 
 		void InOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
@@ -325,8 +325,29 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		void DugumGorPostOrderYaz()		//dugumu gormek icin
 		{
 			PostOrderDolasim(kok);		//methodu cagiralim
-		}	
+		}
+		//dugumde deger arama icin 	
 };
+
+	bool IkiliAgac :: DugumAra(int sayi)
+		{
+			AgacDugum *dugumPtr = kok;
+			while(dugumPtr)
+			{
+				if (dugumPtr-> deger == sayi)
+				{
+					return true;
+				}else if(sayi < dugumPtr->deger)
+				{
+					dugumPtr = dugumPtr->sol;
+				}else
+				{
+					dugumPtr = dugumPtr->sag; 
+				}
+				return false;
+			}
+		}
+
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 {
 	AgacDugum *yeniDugum,*dugumPtr; 	// 2 farkli pointer olusturduk birisi agac ici gezimler icin digeri yeni dugumu isaret edicek
@@ -406,7 +427,7 @@ int main() // main fonk islemler burada gerceklesecek
     cout<<"eleman ekleniyor"<<endl;
     agac.dugumEkle(1);
     agac.dugumEkle(2);
-    agac.dugumEkle(3);
+    agac.dugumEkle(60);
     agac.dugumEkle(4);
     agac.dugumEkle(5);
     cout<<"degerler eklendi"<<endl;
@@ -416,6 +437,15 @@ int main() // main fonk islemler burada gerceklesecek
     agac.DugumGorPreOrderYaz();
     cout<<"PreOrderDolasim"<<endl;
     agac.DugumGorPostOrderYaz();
+    
+    if (agac.DugumAra(60))
+    	cout<<"sda"<<endl;
+    else 
+    	cout<<"len";
+        
+    
+    
+    
 return 0;
 
 /*

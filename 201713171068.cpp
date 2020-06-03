@@ -296,8 +296,8 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		struct AgacDugum		//struct yapoımızı kuralım 
 		{
 			int deger;		// degerimiz
-			AgacDugum *pSol;		//sola eklemek icin pointer  
-			AgacDugum *pSag;		//saga eklemek icin pointer 	
+			AgacDugum *sol;		//sola eklemek icin pointer  
+			AgacDugum *sag;		//saga eklemek icin pointer 	
 		};
 		AgacDugum *kok;	//baslangıc yerimiz kokumuz
 		IkiliAgac()	// kurucu fonk
@@ -312,15 +312,15 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		void PreOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
 		void PostOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
 		
-		void DugumGorInOrder();		//dugumu gormek icin
+		void DugumGorInOrder()		//dugumu gormek icin
 		{
 			InOrderDolasim(kok);		//methodu cagiralim
 		}
-		void DugumGorPreOrder();		//dugumu gormek icin
+		void DugumGorPreOrder()	//dugumu gormek icin
 		{
 			PreOrderDolasim(kok);		//methodu cagiralim
 		}
-		void DugumGorPostOrder();		//dugumu gormek icin
+		void DugumGorPostOrder()		//dugumu gormek icin
 		{
 			PostOrderDolasim(kok);		//methodu cagiralim
 		}	
@@ -369,15 +369,26 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 
 		void IkiliAgac :: InOrderDolasim(AgacDugum *dugumPtr)
 		{
-			
-		}		
+			// sol -> kok -> sag
+			InOrderDolasim(dugumPtr->sol);
+			cout<<dugumPtr->deger<<endl;
+			InOrderDolasim(dugumPtr->sag);	
+		}
+				
 		void IkiliAgac :: PreOrderDolasim(AgacDugum *dugumPtr);		
 		{
-			
+			// kok -> sol ->sag
+			cout<<dugumPtr->deger<<endl;		// koku yaz
+			InOrderDolasim(dugumPtr->sol);		//solu al
+			InOrderDolasim(dugumPtr->sag);		//sagi al 
 		}
+		
 		void IkiliAgac :: PostOrderDolasim(AgacDugum *dugumPtr);	
 		{
-			
+		    // sol -> sag ->kok 
+			InOrderDolasim(dugumPtr->sol);
+			InOrderDolasim(dugumPtr->sag);
+			cout<<dugumPtr->deger<<endl;
 		}
 
 

@@ -316,6 +316,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		
 		void DugumGorInOrderYaz()		//dugumu gormek icin
 		{
+			cout<<"/"<<endl;
 			InOrderDolasim(kok);		//methodu cagiralim
 		}
 		void DugumGorPreOrderYaz()	//dugumu gormek icin
@@ -326,9 +327,8 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		{
 			PostOrderDolasim(kok);		//methodu cagiralim
 		}
-		//dugumde deger arama icin 	
+		//dugumde deger arama icin 		
 };
-
 	bool IkiliAgac :: DugumAra(int sayi)
 		{
 			AgacDugum *dugumPtr = kok;
@@ -344,9 +344,10 @@ class IkiliAgac		//binary tree yapimizi yazalim
 				{
 					dugumPtr = dugumPtr->sag; 
 				}
-				return false;
 			}
+			return false;
 		}
+
 
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 {

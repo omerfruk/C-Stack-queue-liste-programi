@@ -336,18 +336,18 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		//dugumde deger arama icin 		
 	bool IkiliAgac :: DugumAra(int sayi)
 		{
-			AgacDugum *dugumPtr = kok;
-			while(dugumPtr)
+			AgacDugum *dugumPtr = kok;		// kok dizimizi dugum pointere atadik 
+			while(dugumPtr)		// dugum oldugu surece donecek
 			{
-				if (dugumPtr-> deger == sayi)
+				if (dugumPtr-> deger == sayi)		// girlen sayi dgere esitmi ?
 				{
-					return true;
-				}else if(sayi < dugumPtr->deger)
+					return true;		// donguye devam et
+				}else if(sayi < dugumPtr->deger)		// kokumuz girilen sayidan buyukse 
 				{
-					dugumPtr = dugumPtr->sol;
+					dugumPtr = dugumPtr->sol;		// soldaki degeri pointer atadik
 				}else
 				{
-					dugumPtr = dugumPtr->sag; 
+					dugumPtr = dugumPtr->sag; //sagdaki degeri atadik
 				}
 			}
 			return false;
@@ -502,13 +502,14 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 
 int main() // main fonk islemler burada gerceklesecek
 {
-	IkiliAgac agac;
+	/*IkiliAgac agac;
     cout<<"eleman ekleniyor"<<endl;
     agac.dugumEkle(1);
     agac.dugumEkle(2);
     agac.dugumEkle(60);
     agac.dugumEkle(4);
     agac.dugumEkle(5);
+    agac.sil(60);
     cout<<"degerler eklendi"<<endl;
     cout<<"InOrderDolasim"<<endl;
     agac.DugumGorInOrderYaz();
@@ -516,20 +517,14 @@ int main() // main fonk islemler burada gerceklesecek
     agac.DugumGorPreOrderYaz();
     cout<<"PreOrderDolasim"<<endl;
     agac.DugumGorPostOrderYaz();
-    
+    */
     
 	/*if (agac.DugumAra(60))
     	cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
     else 
     	cout<<"Deger bulunamadi ";
     */
-    
-    
-    
-    
-return 0;
-
-/*
+	IkiliAgac a;
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
@@ -540,7 +535,9 @@ return 0;
 		cout << "/ 1.Yigin uygulamasi	                " << endl; //menu yazdiralim
 		cout << "/ 2.Kuyruk uygulamasi                " << endl;	//menu yazdiralim
 		cout << "/ 3.Tek yonlu bagli liste uygulamasi " << endl;	//menu yazdiralim
-		cout << "/ 4.Cikis                            " << endl;	//menu yazdiralim
+		cout << "/ 4.Ikili Agac uygulamasi " << endl;	//menu yazdiralim
+		cout << "/ 5.Tek yonlu bagli liste uygulamasi " << endl;	//menu yazdiralim
+		cout << "/ 6.Cikis                            " << endl;	//menu yazdiralim
 		cout << "--------------------------------------" << endl;	//menu yazdiralim
 		int choice;												//secim icin bir degisken alalim
 		cin >> choice;												// degiskene kullanicidan deger isteyelim
@@ -786,8 +783,64 @@ return 0;
 			}
 	
 		}
+		else if (choice == 4)
+		{
+			while(true)
+			{	
+			cout<<"--------------Ikýlý Agac Manu--------------"<<endl;		// cýikarma manu yazdýrma
+			cout<<"/ 1.Agaca Eleman Ekle "<<endl;//menu yazdir
+			cout<<"/ 2.Agactan Eleman Sil "<<endl;//menu yazdir
+			cout<<"/ 3.Agaci Temizle "<<endl;//menu yazdir
+			cout<<"/ 4.Agactaki Eleman Sayisini Goster "<<endl;//menu yazdir
+			cout<<"/ 5.Agaci InOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
+			cout<<"/ 6.Agaci PreOrder Dolasarak Elemanlari Goster  "<<endl;//menu yazdir
+			cout<<"/ 7.Agaci PostOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
+			cout<<"/ 8.Cikis "<<endl;//menu yazdir
+			cout<<"----------------------------------------"<<endl;//menu yazdir
+			cout<<"Lutfen seciminizi yapiniz: ";
+			int secim;
+			cin>>secim;
+			if(secim == 1)
+			{
+				cout<<"lutfen degeri giriniz: ";
+				int deger;
+				cin>>deger;
+				a.dugumEkle(deger);
+			}else if(secim == 2)
+			{
+				cout<<"lutfen degeri giriniz: ";
+				int deger;
+				cin>>deger;
+				a.sil(deger);
+			}else if(secim == 3)
+			{
+				cout<<"Agac Temizleniyor..."<<endl;
+				a.tumunuSil();
+				cout<<"Agac Temizlendi."	
+			}else if(secim == 4)
+			{
+				/*
+				degerler gosterecek fonk.
+				*/
+			}else if(secim == 5)
+			{
+				cout<<"Degerler InOrder seklinde yazdirilacak"<endl;
+				a.InOrderDolasim();
+			}else if(secim == 6)
+			{
+				cout<<"Degerler PreOrder seklinde yazdirilacak"<endl;
+				a.PreOrderDolasim();
+			}else if(secim == 7)
+			{
+				cout<<"Degerler PostOrder seklinde yazdirilacak"<endl;
+				a.PostOrderDolasim();
+			}else
+				break;
+			
+			}
+		}
 		
-		else if(choice == 4)	// secim olarak ciks secildimi yapilacak islem
+		else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem
 		{
 		break;
 		}
@@ -796,7 +849,7 @@ return 0;
 			continue;
 		}
 	
-	}*/
+	}
 }
 	
 

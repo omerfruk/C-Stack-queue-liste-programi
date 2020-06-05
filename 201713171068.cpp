@@ -787,7 +787,7 @@ int main() // main fonk islemler burada gerceklesecek
 		{
 			while(true)
 			{	
-			cout<<"--------------Ikýlý Agac Manu--------------"<<endl;		// cýikarma manu yazdýrma
+			cout<<"--------------Ikili Agac Manu--------------"<<endl;		// cýikarma manu yazdýrma
 			cout<<"/ 1.Agaca Eleman Ekle "<<endl;//menu yazdir
 			cout<<"/ 2.Agactan Eleman Sil "<<endl;//menu yazdir
 			cout<<"/ 3.Agaci Temizle "<<endl;//menu yazdir
@@ -816,7 +816,7 @@ int main() // main fonk islemler burada gerceklesecek
 			{
 				cout<<"Agac Temizleniyor..."<<endl;
 				a.tumunuSil();
-				cout<<"Agac Temizlendi."	
+				cout<<"Agac Temizlendi."<<endl;	
 			}else if(secim == 4)
 			{
 				/*
@@ -824,16 +824,16 @@ int main() // main fonk islemler burada gerceklesecek
 				*/
 			}else if(secim == 5)
 			{
-				cout<<"Degerler InOrder seklinde yazdirilacak"<endl;
-				a.InOrderDolasim();
+				cout<<"Degerler InOrder seklinde yazdirilacak"<<endl;
+				a.DugumGorInOrderYaz();
 			}else if(secim == 6)
 			{
-				cout<<"Degerler PreOrder seklinde yazdirilacak"<endl;
-				a.PreOrderDolasim();
+				cout<<"Degerler PreOrder seklinde yazdirilacak"<<endl;
+				a.DugumGorPreOrderYaz();
 			}else if(secim == 7)
 			{
-				cout<<"Degerler PostOrder seklinde yazdirilacak"<endl;
-				a.PostOrderDolasim();
+				cout<<"Degerler PostOrder seklinde yazdirilacak"<<endl;
+				a.DugumGorPostOrderYaz();
 			}else
 				break;
 			

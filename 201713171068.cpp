@@ -299,7 +299,8 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			AgacDugum *sol;		//sola eklemek icin pointer  
 			AgacDugum *sag;		//saga eklemek icin pointer 	
 		};
-		int toplam = 0;
+		int toplam = 0;		// elemanlarý saymak icin metod
+		bool cikis;		// sayactan cikmak icin 
 		AgacDugum *kok;	//baslangýc yerimiz kokumuz
 		
 		IkiliAgac()	// kurucu fonk
@@ -307,7 +308,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			kok=NULL;
 		}
 		void dugumEkle(int);
-		bool DugumAra(int);
+		void DugumAra();
 		
 		// lazim olacak fonksiyonlar 
 		void InOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
@@ -341,28 +342,36 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		}
 };
 		//dugumde deger arama icin 		
-	bool IkiliAgac :: DugumAra(int sayi)
-		{
+	void IkiliAgac :: DugumAra()
+		{	
+			cout<<"Agacta Aranacak Deger: ";
+			int aranan;
+			cin>>aranan;
 			AgacDugum *dugumPtr = kok;		// kok dizimizi dugum pointere atadik 
 			while(dugumPtr)		// dugum oldugu surece donecek
 			{
-				if (dugumPtr-> deger == sayi)		// girlen sayi dgere esitmi ?
+				if (dugumPtr-> deger == aranan)		// girlen sayi dgere esitmi ?
 				{
-					return true;		// donguye devam et
-				}else if(sayi < dugumPtr->deger)		// kokumuz girilen sayidan buyukse 
-				{
+					cikis = true;		// donguye devam et
+					cout<<"aranan deger bulunmustur"<<endl;	
+				}else if(aranan < dugumPtr->deger)		// kokumuz girilen sayidan buyukse 
+				{	
+					cikis = true;
 					dugumPtr = dugumPtr->sol;		// soldaki degeri pointer atadik
 				}else
-				{
+				{	
+					cikis = true;
 					dugumPtr = dugumPtr->sag; //sagdaki degeri atadik
 				}
+				cikis = false;
+				cout<<"aranan deger bulunmustur"<<aranan<<endl;
 			}
-			return false;
+			cout<<"deger bulunamadi";
 		}
 
 
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
-{
+{	
 	toplam++;
 	AgacDugum *yeniDugum,*dugumPtr; 	// 2 farkli pointer olusturduk birisi agac ici gezimler icin digeri yeni dugumu isaret edicek
 	
@@ -462,8 +471,10 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			}else if (sayi > dugumPtr->deger)		//sayi sagdami 
 			{
 				dugumSil(sayi,dugumPtr->sag);		// ayni saekilde metodu tekrar cagiralim
-				silici(dugumPtr);
 			}
+			else
+				silici(dugumPtr);	//diger durumlarda koku silecek
+			
 		}
 		
 		void IkiliAgac :: silici(AgacDugum *& dugumPtr)
@@ -804,50 +815,61 @@ int main() // main fonk islemler burada gerceklesecek
 			cout<<"/ 5.Agaci InOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
 			cout<<"/ 6.Agaci PreOrder Dolasarak Elemanlari Goster  "<<endl;//menu yazdir
 			cout<<"/ 7.Agaci PostOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
-			cout<<"/ 8.Cikis "<<endl;//menu yazdir
+			cout<<"/ 8. Agacta Eleman Ara"<<endl;//menu yazdir
+			cout<<"/ 9.Cikis "<<endl;//menu yazdir
 			cout<<"----------------------------------------"<<endl;//menu yazdir
 			cout<<"Lutfen seciminizi yapiniz: ";
-			int secim;
-			cin>>secim;
-			if(secim == 1)
+			int secim;		//secim degiskeni
+			cin>>secim;		//isteneni aldik
+			if(secim == 1)	// secim 1 ise 
 			{
 				cout<<"lutfen degeri giriniz: ";
-				int deger;
-				cin>>deger;
-				a.dugumEkle(deger);
+				int deger;		//eklenecek degeri tanimladik
+				cin>>deger;		// degeri aldik
+				a.dugumEkle(deger);		//metodumuzu cagirdik
 			}else if(secim == 2)
 			{
 				cout<<"lutfen degeri giriniz: ";
-				int deger;
-				cin>>deger;
-				a.sil(deger);
+				int deger;		//silnecek degeri tanimladik
+				cin>>deger;		// degeri aldik
+				a.sil(deger);	//metodu cagirdik
 			}else if(secim == 3)
 			{
 				cout<<"Agac Temizleniyor..."<<endl;
-				a.tumunuSil();
+				a.tumunuSil();		//agaci temizleme metodumuzu cagýrdýk
 				cout<<"Agac Temizlendi."<<endl;	
 			}else if(secim == 4)
 			{
-				cout<<"Agactaki eleman Sayisi :";a.sayac();
+				cout<<"Agactaki eleman Sayisi :";a.sayac();		//sayacimizi cagirip yazdirdik
 			}else if(secim == 5)
 			{
 				cout<<"Degerler InOrder seklinde yazdirilacak"<<endl;
-				a.DugumGorInOrderYaz();
+				a.DugumGorInOrderYaz();		// yazdirma mmetodlarimizi cagiriyoruz
 			}else if(secim == 6)
 			{
 				cout<<"Degerler PreOrder seklinde yazdirilacak"<<endl;
-				a.DugumGorPreOrderYaz();
+				a.DugumGorPreOrderYaz();	// yazdirma mmetodlarimizi cagiriyoruz
 			}else if(secim == 7)
 			{
 				cout<<"Degerler PostOrder seklinde yazdirilacak"<<endl;
-				a.DugumGorPostOrderYaz();
-			}else
+				a.DugumGorPostOrderYaz();	// yazdirma mmetodlarimizi cagiriyoruz
+			}
+			/*else if(secim == 8)
+			{
+				cout<<"Lutfen arama yapmak istediginiz degeri giriniz: ";
+				if (cikis)
+    				cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
+    			else 
+    				cout<<"Deger bulunamadi ";				
+			}*/
+			else
 				break;
 			
 			}
-		}
-		
-		else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem
+		}else if(choice == 7)
+		{
+			
+		}else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem
 		{
 		break;
 		}

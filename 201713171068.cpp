@@ -328,7 +328,10 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		}
 		// silme metodlari
 		void sil(int sayi);
+		void tumunuSil();
 		void dugumSil(int,AgacDugum *& );
+		void silici(AgacDugum *&);
+		void deleteAll (AgacDugum *&);
 };
 		//dugumde deger arama icin 		
 	bool IkiliAgac :: DugumAra(int sayi)
@@ -422,7 +425,80 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			cout<<dugumPtr->deger<<endl;
 			}
 		}
-
+		/*
+		
+		
+		dugumPtr == null dugum yok demek o zaman komple silme metodumuz buradan cikacak
+		
+		
+		
+		
+		*/
+	
+		//silinecek olan degeri alir ve dugum sile gönderir
+		void IkiliAgac ::sil(int sayi)
+		{
+			dugumSil(sayi,kok);	// metod içinde metod tanýmladýk
+		}
+		void IkiliAgac :: tumunuSil()	// metoda parametre gondermek istemedim bu yuzden metodlar yardýmýyla yaptým 
+		{
+			deleteAll(kok); 		//metodu burda parametresiyle gonderdik
+		}
+		
+		void IkiliAgac :: dugumSil(int sayi, AgacDugum *& dugumPtr )
+		{
+			if(sayi < dugumPtr->deger )		//sayi soldami
+			{
+				dugumSil(sayi,dugumPtr->sol);		//metodu tekrar cagiralim 	
+			}else if (sayi > dugumPtr->deger)		//sayi sagdami 
+			{
+				dugumSil(sayi,dugumPtr->sag);		// ayni saekilde metodu tekrar cagiralim
+				silici(dugumPtr);
+			}
+		}
+		
+		void IkiliAgac :: silici(AgacDugum *& dugumPtr)
+		{
+			AgacDugum *tempDugumPtr;
+			if(dugumPtr == NULL)		// dugum bosmu
+			{
+				cout<<"dugumy ok"<<endl;	
+			}else if (dugumPtr->sag == NULL) 		//dugumun sagi bosmu
+			{
+				tempDugumPtr = dugumPtr;		// dýugumu kaybetmemek icim 
+				dugumPtr = dugumPtr->sol;		// dugum pointerimizi kaybetmemek icin atadýk
+				delete tempDugumPtr;		// gecici degiskenimizi sildik
+			}else if (dugumPtr->sol == NULL) 		//dugumun solu bosmu
+			{
+				tempDugumPtr = dugumPtr;		// dýugumu kaybetmemek icim 
+				dugumPtr = dugumPtr->sag;		// dugum pointerimizi kaybetmemek icin atadýk
+				delete tempDugumPtr;		// gecici degiskenimizi sildik
+			}else 
+			{
+				tempDugumPtr = dugumPtr->sag;		//dugumun sagýna gidelim
+				while(tempDugumPtr->sol)			//dugumun solunda ilerliyelim 
+				{
+					tempDugumPtr = tempDugumPtr->sol;		//soldaki degeri gecici degiskene atayalim 
+				}
+				tempDugumPtr->sol = dugumPtr->sol;		// silecegimiz elemana ulastikmi bu islem yapilacak sol alt agaci atadik
+				tempDugumPtr = dugumPtr; 		// boylelikle veri kaybini engelledik
+				
+				dugumPtr = dugumPtr->sag;		// sag alt agaci atadik
+				delete tempDugumPtr;
+			}
+			
+		}
+		
+		void IkiliAgac :: deleteAll(AgacDugum *& dugumPtr)
+		{	
+			if(dugumPtr == NULL){		// bosmu diye kontrol edelim 
+				cout<<"Dugum  zaten bostur"<<endl;		// bossa mesaj yazdiralim
+			}else	// degilse 	
+				dugumPtr = NULL;		//dugumu bosaltalim
+			
+		}
+		
+		
 
 int main() // main fonk islemler burada gerceklesecek
 {
@@ -440,12 +516,14 @@ int main() // main fonk islemler burada gerceklesecek
     agac.DugumGorPreOrderYaz();
     cout<<"PreOrderDolasim"<<endl;
     agac.DugumGorPostOrderYaz();
-    kok = NULL;
-    if (agac.DugumAra(60))
+    
+    
+	/*if (agac.DugumAra(60))
     	cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
     else 
     	cout<<"Deger bulunamadi ";
-        
+    */
+    
     
     
     

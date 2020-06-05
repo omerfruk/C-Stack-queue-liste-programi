@@ -315,8 +315,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		void PostOrderDolasim(AgacDugum *dugumPtr);		//dolasmak icin fonk
 		
 		void DugumGorInOrderYaz()		//dugumu gormek icin
-		{
-			cout<<"/"<<endl;
+		{	
 			InOrderDolasim(kok);		//methodu cagiralim
 		}
 		void DugumGorPreOrderYaz()	//dugumu gormek icin
@@ -327,8 +326,11 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		{
 			PostOrderDolasim(kok);		//methodu cagiralim
 		}
-		//dugumde deger arama icin 		
+		// silme metodlari
+		void sil(int sayi);
+		void dugumSil(int,AgacDugum *& );
 };
+		//dugumde deger arama icin 		
 	bool IkiliAgac :: DugumAra(int sayi)
 		{
 			AgacDugum *dugumPtr = kok;
@@ -438,11 +440,11 @@ int main() // main fonk islemler burada gerceklesecek
     agac.DugumGorPreOrderYaz();
     cout<<"PreOrderDolasim"<<endl;
     agac.DugumGorPostOrderYaz();
-    
+    kok = NULL;
     if (agac.DugumAra(60))
-    	cout<<"sda"<<endl;
+    	cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
     else 
-    	cout<<"len";
+    	cout<<"Deger bulunamadi ";
         
     
     

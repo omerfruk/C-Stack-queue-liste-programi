@@ -299,7 +299,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			AgacDugum *sol;		//sola eklemek icin pointer  
 			AgacDugum *sag;		//saga eklemek icin pointer 	
 		};
-		
+		int toplam = 0;
 		AgacDugum *kok;	//baslangýc yerimiz kokumuz
 		
 		IkiliAgac()	// kurucu fonk
@@ -332,6 +332,13 @@ class IkiliAgac		//binary tree yapimizi yazalim
 		void dugumSil(int,AgacDugum *& );
 		void silici(AgacDugum *&);
 		void deleteAll (AgacDugum *&);
+		
+		//Verileri saymak icin metod.
+		void sayac()
+		{
+			
+			cout<<""<<toplam<<endl;
+		}
 };
 		//dugumde deger arama icin 		
 	bool IkiliAgac :: DugumAra(int sayi)
@@ -356,6 +363,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 {
+	toplam++;
 	AgacDugum *yeniDugum,*dugumPtr; 	// 2 farkli pointer olusturduk birisi agac ici gezimler icin digeri yeni dugumu isaret edicek
 	
 	yeniDugum = new AgacDugum;
@@ -394,8 +402,9 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 		}	
 	}
 	
+	
 }
-
+		
 		void IkiliAgac :: InOrderDolasim(AgacDugum *dugumPtr)
 		{
 			// sol -> kok -> sag
@@ -462,7 +471,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			AgacDugum *tempDugumPtr;
 			if(dugumPtr == NULL)		// dugum bosmu
 			{
-				cout<<"dugumy ok"<<endl;	
+				cout<<"dugumy yok"<<endl;	
 			}else if (dugumPtr->sag == NULL) 		//dugumun sagi bosmu
 			{
 				tempDugumPtr = dugumPtr;		// dýugumu kaybetmemek icim 
@@ -819,9 +828,7 @@ int main() // main fonk islemler burada gerceklesecek
 				cout<<"Agac Temizlendi."<<endl;	
 			}else if(secim == 4)
 			{
-				/*
-				degerler gosterecek fonk.
-				*/
+				cout<<"Agactaki eleman Sayisi :";a.sayac();
 			}else if(secim == 5)
 			{
 				cout<<"Degerler InOrder seklinde yazdirilacak"<<endl;

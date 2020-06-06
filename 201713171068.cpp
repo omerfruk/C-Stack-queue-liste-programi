@@ -600,7 +600,7 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 		return;			//bittirdik
 	}
 	// aradaki bir degeri silme
-	dugum* pTemp = Veri[mod];	// yeni bir gecici deger olusturalim
+	Dugum* pTemp = Veri[mod];	// yeni bir gecici deger olusturalim
 	while (pTemp->pSonraki != NULL)	//elemanlari bi gezelim 
 	{
 		if (pTemp->pSonraki->Anahtar == Anahtar) 	//aradigimiz veriyi bulduysak 

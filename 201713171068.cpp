@@ -12,6 +12,9 @@
 #include <iostream>
 using namespace std;
 
+
+const int MAX=10;
+
 //
 class StackQueueNode
 {
@@ -513,33 +516,60 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			
 		}
 		
+class Dugum{		//hash tablosu icin gerekli class
+	public: 
+		int Anahtar;		//anahtar adli degerimiz
+		Dugum* pSonraki;		//dugum tipinde pointeimiz
 		
+		Dugum(int Anahtar)		// kurucu fonksiyonumuz
+		{
+			this->Anahtar=Anahtar;		//anahtar adlý degiskenimizi bizim ustte tanimladigimiz anahtara ata 
+			pSonraki=NULL;		// yapimizdaki bagli listemizim sonraki elemanin adresini tutacak alan 
+		}
+};
+
+class HashTablo{		//hash tablomuz
+	public:
+		Dugum* Veri[MAX];		//degerimizin uzunlugunu girdik
+		
+		void Ekle(int Anahtar);		// ekleme metodumuz	
+		Dugum* Bul(int Anahtar);		//bulma metodumuz
+		void Sil(int Anahtar);		//silme metodumuz
+		HashTablo();			//kurucu fonksiyonumuz
+};
+
+HashTablo :: HashTablo()
+{
+	for (int i = 0;i<MAX;i++)		//tum elemanlari dolandiracak dongu
+	Veri[i]=NULL			// her bir elemana null(bos) degerini atadik
+}
+
+HashTablo :: Ekle(int Anahtar)
+{
+	Dugum*	pYeni = new Dugum(Anahtar);		//dugum tipinde veriyi tutacak bi pointer olusturalim
+	int mod = Anahtar % MAX;	//modumuzu bulalim
+	if(!Veri[mod])	//eleman varmi kontrol edelim
+		{
+			Veri[mod] = pYeni;	//yoksa yeni elemanimizi yerlestirecez
+			return;		//bitti
+		}
+	Dugum* pTemp = Veri[mod];	// gecici bir eleman olusturalim
+	while (pTemp->pSonraki !=NULL)	// son elemana gidelim 
+	{
+		pTemp = pTemp->pSonraki;		//onceki elemani simdiki gecidi elemana atayalim
+		pTemp->pSonraki = pYeni;		//gecici elemanin sonrasina yeni degeri atayalim
+	}
+}
+
+
+
+
+
 
 int main() // main fonk islemler burada gerceklesecek
 {
-	/*IkiliAgac agac;
-    cout<<"eleman ekleniyor"<<endl;
-    agac.dugumEkle(1);
-    agac.dugumEkle(2);
-    agac.dugumEkle(60);
-    agac.dugumEkle(4);
-    agac.dugumEkle(5);
-    agac.sil(60);
-    cout<<"degerler eklendi"<<endl;
-    cout<<"InOrderDolasim"<<endl;
-    agac.DugumGorInOrderYaz();
-    cout<<"PostOrderDolasim"<<endl;
-    agac.DugumGorPreOrderYaz();
-    cout<<"PreOrderDolasim"<<endl;
-    agac.DugumGorPostOrderYaz();
-    */
-    
-	/*if (agac.DugumAra(60))
-    	cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
-    else 
-    	cout<<"Deger bulunamadi ";
-    */
-	IkiliAgac a;
+
+/*	IkiliAgac a;
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
@@ -810,7 +840,7 @@ int main() // main fonk islemler burada gerceklesecek
 			cout<<"/ 5.Agaci InOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
 			cout<<"/ 6.Agaci PreOrder Dolasarak Elemanlari Goster  "<<endl;//menu yazdir
 			cout<<"/ 7.Agaci PostOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
-			cout<<"/ 8. Agacta Eleman Ara"<<endl;//menu yazdir
+			cout<<"/ 8.Agacta Eleman Ara"<<endl;//menu yazdir
 			cout<<"/ 9.Cikis "<<endl;//menu yazdir
 			cout<<"----------------------------------------"<<endl;//menu yazdir
 			cout<<"Lutfen seciminizi yapiniz: ";
@@ -874,7 +904,7 @@ int main() // main fonk islemler burada gerceklesecek
 			continue;
 		}
 	
-	}
+	}*/
 }
 	
 

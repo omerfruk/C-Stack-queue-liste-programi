@@ -561,6 +561,22 @@ HashTablo :: Ekle(int Anahtar)
 	}
 }
 
+Dugum* HashTablo :: Bul(int Anahtar)		//bul metodumuz
+{
+	int mod = Anahtar % MAX; //modumuzu bulalim
+	Dugum* pTemp = Veri[mod];		// yeniden local bi pTemp olusturalým gecici eleman tutacak bu bize
+	
+	while(pTemp != NULL)		// pTemp bos olasiya kadar git 
+	{
+		if(pTemp->Anahtar == Anahtar)		//pTempin anahtari benim aradigim anahtarsa 
+		{
+			return pTemp; 		//ptempi dondurelim
+		}
+		pTemp=pTemp->pSonraki;	// p tempe degerimizi atadik
+	}
+	return NULL; // aradigimizi bulamadik ve null yaptik
+}
+
 
 
 

@@ -606,7 +606,7 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 		if (pTemp->pSonraki->Anahtar == Anahtar) 	//aradigimiz veriyi bulduysak 
 		{
 			Dugum* pDon = pTemp->pSonraki;	// degeri yedekledekleyelim
-			pTemp->Sonraki = pDon->pSonraki;
+			pTemp->pSonraki = pDon->pSonraki;
 			delete pDon;
 			return;
 		}

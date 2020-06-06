@@ -541,10 +541,10 @@ class HashTablo{		//hash tablomuz
 HashTablo :: HashTablo()
 {
 	for (int i = 0;i<MAX;i++)		//tum elemanlari dolandiracak dongu
-	Veri[i]=NULL			// her bir elemana null(bos) degerini atadik
+	Veri[i]=NULL;			// her bir elemana null(bos) degerini atadik
 }
 
-HashTablo :: Ekle(int Anahtar)
+void HashTablo :: Ekle(int Anahtar)
 {
 	Dugum*	pYeni = new Dugum(Anahtar);		//dugum tipinde veriyi tutacak bi pointer olusturalim
 	int mod = Anahtar % MAX;	//modumuzu bulalim
@@ -622,6 +622,21 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 
 int main() // main fonk islemler burada gerceklesecek
 {
+
+
+
+HashTablo h;
+h.Ekle(43);
+h.Ekle(47);
+h.Ekle(46);
+h.Ekle(45);
+h.Ekle(44);
+
+Dugum* pTemp =h.Bul(44);
+
+
+
+
 
 /*	IkiliAgac a;
 	Queue q;  // nesne olustur

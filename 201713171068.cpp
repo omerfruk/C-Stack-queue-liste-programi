@@ -576,7 +576,45 @@ Dugum* HashTablo :: Bul(int Anahtar)		//bul metodumuz
 	}
 	return NULL; // aradigimizi bulamadik ve null yaptik
 }
-
+void HashTablo :: Sil (int Anahtar)		//silme metodumuz
+{
+	int mod = Anahtar % MAX; //modumuzu bulalim
+	
+	if (!Veri[mod])	//eleman yoksa
+		return;		//geri donderdik
+	
+	if (!Veri[mod]->pSonraki)		//bir deger varsa 
+	{
+		if (Veri[mod]->Anahtar==Anahtar)	// aradigim bir dugum mu var aynimi buna bakicaz
+		{
+			delete Veri[mod];		//veriyi sildik
+			Veri[mod]=NULL;		//adresi de sildik hata almamak icinveri var zannetmesin
+		}
+		return;
+	}
+	if(Veri[mod]->Anahtar==Anahtar) // verimizin anahtarý anahtara esitmi  ve birden fazla dugum varsa
+	{
+		Dugum* pDon = Veri[mod]->pSonraki;		// degerimizin adrsini donus degerimizin adrsine gonderdik
+		delete Veri[mod];		// degerimizi sildik
+		Veri[mod] = pDon;		//yeni degerimizi vagladik
+		return;			//bittirdik
+	}
+	// aradaki bir degeri silme
+	dugum* pTemp = Veri[mod];	// yeni bir gecici deger olusturalim
+	while (pTemp->pSonraki != NULL)	//elemanlari bi gezelim 
+	{
+		if (pTemp->pSonraki->Anahtar == Anahtar) 	//aradigimiz veriyi bulduysak 
+		{
+			Dugum* pDon = pTemp->Sonraki;	// degeri yedekledekleyelim
+			pTemp->Sonraki = pDon->pSonraki;
+			delete pDon;
+			return;
+		}
+		pTemp = pTemp->pSonraki; 		// while icerisinde ilerlicez 
+		// bir arttirma operetoru gibi dusunebiliriz surekli bir sonraki degere gecicek
+		// bulasiya kadar 
+	}	
+}
 
 
 

@@ -352,19 +352,17 @@ class IkiliAgac		//binary tree yapimizi yazalim
 			{
 				if (dugumPtr-> deger == aranan)		// girlen sayi dgere esitmi ?
 				{
-					cikis = true;		// donguye devam et
-					cout<<"aranan deger bulunmustur"<<endl;	
+					cout<<"aranan deger bulunmustur: "<<aranan<<endl;
+					break;	
 				}else if(aranan < dugumPtr->deger)		// kokumuz girilen sayidan buyukse 
 				{	
-					cikis = true;
 					dugumPtr = dugumPtr->sol;		// soldaki degeri pointer atadik
 				}else
 				{	
-					cikis = true;
 					dugumPtr = dugumPtr->sag; //sagdaki degeri atadik
 				}
-				cikis = false;
-				cout<<"aranan deger bulunmustur"<<aranan<<endl;
+				cout<<"aranan "<<aranan<<" degeri bulunamamistir. "<<endl;
+				break;
 			}
 			cout<<"deger bulunamadi";
 		}
@@ -444,12 +442,9 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 			}
 		}
 		/*
-		
-		
-		dugumPtr == null dugum yok demek o zaman komple silme metodumuz buradan cikacak
-		
-		
-		
+				
+		dugumPtr == null dugum yok demek
+		o zaman agaci temizleme metodumuz buradan cikacak	
 		
 		*/
 	
@@ -854,19 +849,20 @@ int main() // main fonk islemler burada gerceklesecek
 				cout<<"Degerler PostOrder seklinde yazdirilacak"<<endl;
 				a.DugumGorPostOrderYaz();	// yazdirma mmetodlarimizi cagiriyoruz
 			}
-			/*else if(secim == 8)
+			else if(secim == 8)
 			{
-				cout<<"Lutfen arama yapmak istediginiz degeri giriniz: ";
-				if (cikis)
-    				cout<<"Aranan deger " <<"bulunmaktadir"<<endl;
-    			else 
-    				cout<<"Deger bulunamadi ";				
-			}*/
+				a.DugumAra();		
+			}
+			else if(secim == 9)
+				cout<<"cikis gerceklestiriliyor"<<endl;
 			else
+				{
+				cout<<"boyle bir girdi yok"<<endl;
 				break;
+				}
 			
 			}
-		}else if(choice == 7)
+		}else if(choice == 5)
 		{
 			
 		}else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem

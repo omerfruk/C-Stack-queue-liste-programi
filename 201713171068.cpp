@@ -454,6 +454,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 		//silinecek olan degeri alir ve dugum sile gönderir
 		void IkiliAgac ::sil(int sayi)
 		{
+			toplam--;
 			dugumSil(sayi,kok);	// metod içinde metod tanýmladýk
 		}
 		void IkiliAgac :: tumunuSil()	// metoda parametre gondermek istemedim bu yuzden metodlar yardýmýyla yaptým 
@@ -477,6 +478,7 @@ void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 		
 		void IkiliAgac :: silici(AgacDugum *& dugumPtr)
 		{
+			
 			AgacDugum *tempDugumPtr;
 			if(dugumPtr == NULL)		// dugum bosmu
 			{
@@ -1048,10 +1050,12 @@ while (pTemp!=NULL)
 				}
 			}else if(secim == 6)
 			{
-				
+				cout<<"cikis secildi"<<endl;
+				break;
 			}else 
 			{
-				
+				cout<<"Boyle bi secim yoktur"<<endl;
+				continue;
 			}
 		}
 					

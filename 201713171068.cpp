@@ -531,11 +531,16 @@ class Dugum{		//hash tablosu icin gerekli class
 class HashTablo{		//hash tablomuz
 	public:
 		Dugum* Veri[MAX];		//degerimizin uzunlugunu girdik
-		
+		int toplam=0;
 		void Ekle(int Anahtar);		// ekleme metodumuz	
 		Dugum* Bul(int Anahtar);		//bulma metodumuz
 		void Sil(int Anahtar);		//silme metodumuz
 		HashTablo();			//kurucu fonksiyonumuz
+			void sayac()
+		{
+			
+			cout<<""<<toplam<<endl;
+		}
 };
 
 HashTablo :: HashTablo()
@@ -546,6 +551,7 @@ HashTablo :: HashTablo()
 
 void HashTablo :: Ekle(int Anahtar)
 {
+	toplam++;
 	Dugum*	pYeni = new Dugum(Anahtar);		//dugum tipinde veriyi tutacak bi pointer olusturalim
 	int mod = Anahtar % MAX;	//modumuzu bulalim
 	if(!Veri[mod])	//eleman varmi kontrol edelim
@@ -576,8 +582,10 @@ Dugum* HashTablo :: Bul(int Anahtar)		//bul metodumuz
 	}
 	return NULL; // aradigimizi bulamadik ve null yaptik
 }
+
 void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 {
+	toplam--;		// eleman sayisini arttirip azalttik
 	int mod = Anahtar % MAX; //modumuzu bulalim
 	
 	if (!Veri[mod])	//eleman yoksa
@@ -645,11 +653,11 @@ while (pTemp!=NULL)
 	pTemp = pTemp->pSonraki;
 }*/
 
-
-	IkiliAgac a;
+	HashTablo h;// nesnemizi olusturduk
+	IkiliAgac a;	//nesnemizi olsuturudk
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
-	LinkedList l;
+	LinkedList l;		// nesnemizi olusturuk
 	while (true) // surekli dongude kalmasi icin 
 	{																// surekli bu menude kalmak icin gerekli dongu
 		cout << "----------------Menu------------------" << endl;	//menu yazdiralim
@@ -658,7 +666,7 @@ while (pTemp!=NULL)
 		cout << "/ 2.Kuyruk uygulamasi                " << endl;	//menu yazdiralim
 		cout << "/ 3.Tek yonlu bagli liste uygulamasi " << endl;	//menu yazdiralim
 		cout << "/ 4.Ikili Agac uygulamasi " << endl;	//menu yazdiralim
-		cout << "/ 5.Tek yonlu bagli liste uygulamasi " << endl;	//menu yazdiralim
+		cout << "/ 5.Hash Tablosu uygulamasi " << endl;	//menu yazdiralim
 		cout << "/ 6.Cikis                            " << endl;	//menu yazdiralim
 		cout << "--------------------------------------" << endl;	//menu yazdiralim
 		int choice;												//secim icin bir degisken alalim
@@ -789,7 +797,7 @@ while (pTemp!=NULL)
 				
 				
 				*/
-				break;
+				break;// dongu sonlanrirdildi 
 				cout<<endl;
 				cout<<"-------------Linked List Menu---------------"<<endl;//menu yazdir
 				cout<<"/ 1. Listeye eleman ekle"<<endl;//menu yazdir
@@ -927,7 +935,7 @@ while (pTemp!=NULL)
 			}
 	
 		}
-		else if (choice == 4)
+		else if (choice == 4)		//Ikili Agac baslangic
 		{
 			while(true)
 			{	
@@ -991,26 +999,62 @@ while (pTemp!=NULL)
 				}
 			
 			}
-		}else if(choice == 5)
+		}else if(choice == 5)// Hash Tablosu baslangic
 		{
-		/*	while(true)
+			while(true)
 			{	
 			cout<<"--------------Hash Tablo Manu--------------"<<endl;		// cýikarma manu yazdýrma
-			cout<<"/ 1.Hash Eleman Ekle "<<endl;//menu yazdir
-			cout<<"/ 2.Agactan Eleman Sil "<<endl;//menu yazdir
-			cout<<"/ 3.Agaci Temizle "<<endl;//menu yazdir
-			cout<<"/ 4.Agactaki Eleman Sayisini Goster "<<endl;//menu yazdir
-			cout<<"/ 5.Agaci InOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
-			cout<<"/ 6.Agaci PreOrder Dolasarak Elemanlari Goster  "<<endl;//menu yazdir
-			cout<<"/ 7.Agaci PostOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
-			cout<<"/ 8.Agacta Eleman Ara"<<endl;//menu yazdir
-			cout<<"/ 9.Cikis "<<endl;//menu yazdir
+			cout<<"/ 1.Hash Tablosuna Eleman Ekle "<<endl;//menu yazdir
+			cout<<"/ 2.Hash Tablosundan eleman Sil "<<endl;//menu yazdir
+			cout<<"/ 3.Hash Tablosunu Temizle "<<endl;//menu yazdir
+			cout<<"/ 4.Hash Tablosundaki Eleman Sayisini Goster "<<endl;//menu yazdir
+			cout<<"/ 5.Hash Tablosundaki Elemanlari Goster "<<endl;//menu yazdir
+			cout<<"/ 6.Cikis "<<endl;//menu yazdir
 			cout<<"----------------------------------------"<<endl;//menu yazdir
 			cout<<"Lutfen seciminizi yapiniz: ";
 			int secim;		//secim degiskeni
 			cin>>secim;		//isteneni aldik
 			if(secim == 1)	// secim 1 ise 
-		*/				
+			{
+				cout<<"lutfen eklemek istediginiz degeri girin: ";
+				int alinan;
+				cin>>alinan;
+				h.Ekle(alinan);
+				cout<<"eleman eklendi"<<endl;
+			}else if (secim == 2)
+			{
+				cout<<"lutfen silmek istediginiz sayiyi giriniz: ";
+				int silinen;
+				cin>>silinen;
+				h.Sil(silinen);
+				cout<<"deger silinmistir"<<endl;
+			}else if(secim == 3)
+			{
+				cout<<"Hash tablosu temizleniyor...";
+				//h.HashTablo();	
+				cout<<"Temizlendi"<<endl;			
+			}else if(secim == 4)
+			{
+				h.sayac();
+			}else if(secim == 5)
+			{
+				int aranan;
+				cin>>aranan;
+				Dugum* pTemp = h.Bul(aranan);
+				while (pTemp!=NULL)
+				{
+				cout<<pTemp->Anahtar<<endl;
+				pTemp = pTemp->pSonraki;
+				}
+			}else if(secim == 6)
+			{
+				
+			}else 
+			{
+				
+			}
+		}
+					
 		}else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem
 		{
 		break;

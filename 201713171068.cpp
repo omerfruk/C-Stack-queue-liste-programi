@@ -623,22 +623,30 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 int main() // main fonk islemler burada gerceklesecek
 {
 
-
+/*
 
 HashTablo h;
+int al;
+cin>>al;
+h.Ekle(al);
+cout<<""<<al;
+h.Ekle(44);
 h.Ekle(43);
 h.Ekle(47);
-h.Ekle(46);
+h.Ekle(64);
 h.Ekle(45);
-h.Ekle(44);
 
 Dugum* pTemp =h.Bul(44);
 
 
+while (pTemp!=NULL)
+{
+	cout<<pTemp->Anahtar<<endl;
+	pTemp = pTemp->pSonraki;
+}*/
 
 
-
-/*	IkiliAgac a;
+	IkiliAgac a;
 	Queue q;  // nesne olustur
 	Stack s;  //nesne olusturalim
 	LinkedList l;
@@ -656,9 +664,17 @@ Dugum* pTemp =h.Bul(44);
 		int choice;												//secim icin bir degisken alalim
 		cin >> choice;												// degiskene kullanicidan deger isteyelim
 		if (choice==1)
-		{				
+		{		
 				while (true)// surekli dongude kalmasi icin 
-				{				
+				{	
+				
+				/*
+				
+					odev dokumaninda 1,2,3 manulari gozukmesin istendigi icin manular kapatilmistir
+				
+				
+				*/
+				break;			
 				// burada otomatik olarak deÄŸer veriyoruz
 				cout << "-------------Stack Menu---------------" << endl;	//menu yazdiralim
 				cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdiralim
@@ -670,7 +686,7 @@ Dugum* pTemp =h.Bul(44);
 				cout << "/ 6.Ana menuye don 				" << endl; //menu yazdiralim
 				cout << "--------------------------------------" << endl;	//menu yazdiralim
 				int choice;												// secim icin bir degisken tanimlayalim
-				cin >> choice;												// secimi alalaim kullanicidan
+				cin >> choice;										// secimi alalaim kullanicidan
 					if (choice==1){
 						int input;	   // kullanicinin girmek istedigi deger icin degisken
 						cout<<"<- lutfen eklemek istediginiz degeri giriniz->"<<endl;
@@ -707,7 +723,14 @@ Dugum* pTemp =h.Bul(44);
 				else if(choice == 2)// kuyruk yapisi baslangici
 					{						   
 				while (true)// surekli dongude kalmasi icin 
-				{																// queue menumuzu surekli gormek icin bir dongu yazalim
+				{	
+				/*
+				
+					odev dokumaninda 1,2,3 manulari gozukmesin istendigi icin manular kapatilmistir
+				
+				
+				*/	
+				break;														// queue menumuzu surekli gormek icin bir dongu yazalim
 					cout << "-------------Queue Menu---------------" << endl;	//menu yazdir
 					cout << " Yapmak istediginiz islemi seciniz:   " << endl;	//menu yazdir
 					cout << "/ 1.Kuyruga eleman ekle 			" << endl; //menu yazdir
@@ -760,6 +783,13 @@ Dugum* pTemp =h.Bul(44);
 		else if(choice == 3){		// link list giris
 			while(true)// surekli dongude kalmasi icin 
 			{
+				/*
+				
+					odev dokumaninda 1,2,3 manulari gozukmesin istendigi icin manular kapatilmistir
+				
+				
+				*/
+				break;
 				cout<<endl;
 				cout<<"-------------Linked List Menu---------------"<<endl;//menu yazdir
 				cout<<"/ 1. Listeye eleman ekle"<<endl;//menu yazdir
@@ -963,7 +993,24 @@ Dugum* pTemp =h.Bul(44);
 			}
 		}else if(choice == 5)
 		{
-			
+		/*	while(true)
+			{	
+			cout<<"--------------Hash Tablo Manu--------------"<<endl;		// cýikarma manu yazdýrma
+			cout<<"/ 1.Hash Eleman Ekle "<<endl;//menu yazdir
+			cout<<"/ 2.Agactan Eleman Sil "<<endl;//menu yazdir
+			cout<<"/ 3.Agaci Temizle "<<endl;//menu yazdir
+			cout<<"/ 4.Agactaki Eleman Sayisini Goster "<<endl;//menu yazdir
+			cout<<"/ 5.Agaci InOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
+			cout<<"/ 6.Agaci PreOrder Dolasarak Elemanlari Goster  "<<endl;//menu yazdir
+			cout<<"/ 7.Agaci PostOrder Dolasarak Elemanlari Goster "<<endl;//menu yazdir
+			cout<<"/ 8.Agacta Eleman Ara"<<endl;//menu yazdir
+			cout<<"/ 9.Cikis "<<endl;//menu yazdir
+			cout<<"----------------------------------------"<<endl;//menu yazdir
+			cout<<"Lutfen seciminizi yapiniz: ";
+			int secim;		//secim degiskeni
+			cin>>secim;		//isteneni aldik
+			if(secim == 1)	// secim 1 ise 
+		*/				
 		}else if(choice == 6)	// secim olarak ciks secildimi yapilacak islem
 		{
 		break;
@@ -973,7 +1020,7 @@ Dugum* pTemp =h.Bul(44);
 			continue;
 		}
 	
-	}*/
+	}
 }
 	
 

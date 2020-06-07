@@ -538,6 +538,7 @@ class HashTablo{		//hash tablomuz
 		Dugum* Bul(int Anahtar);		//bulma metodumuz
 		void Sil(int Anahtar);		//silme metodumuz
 		HashTablo();			//kurucu fonksiyonumuz
+		void tumunuSil();
 			void sayac()
 		{
 			
@@ -550,7 +551,12 @@ HashTablo :: HashTablo()
 	for (int i = 0;i<MAX;i++)		//tum elemanlari dolandiracak dongu
 	Veri[i]=NULL;			// her bir elemana null(bos) degerini atadik
 }
-
+void HashTablo :: tumunuSil()
+{
+	toplam = 0;		//sayaci sifirladik
+	for (int i = 0;i<MAX;i++)		//tum elemanlari dolandiracak dongu
+	Veri[i]=NULL;			// her bir elemana null(bos) degerini atadik
+}
 void HashTablo :: Ekle(int Anahtar)
 {
 	toplam++;
@@ -632,28 +638,6 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 
 int main() // main fonk islemler burada gerceklesecek
 {
-
-/*
-
-HashTablo h;
-int al;
-cin>>al;
-h.Ekle(al);
-cout<<""<<al;
-h.Ekle(44);
-h.Ekle(43);
-h.Ekle(47);
-h.Ekle(64);
-h.Ekle(45);
-
-Dugum* pTemp =h.Bul(44);
-
-
-while (pTemp!=NULL)
-{
-	cout<<pTemp->Anahtar<<endl;
-	pTemp = pTemp->pSonraki;
-}*/
 
 	HashTablo h;// nesnemizi olusturduk
 	IkiliAgac a;	//nesnemizi olsuturudk
@@ -1032,8 +1016,8 @@ while (pTemp!=NULL)
 				cout<<"deger silinmistir"<<endl;
 			}else if(secim == 3)
 			{
-				cout<<"Hash tablosu temizleniyor...";
-				//h.HashTablo();	
+				cout<<"Hash tablosu temizleniyor..."<<endl;
+				h.tumunuSil();
 				cout<<"Temizlendi"<<endl;			
 			}else if(secim == 4)
 			{

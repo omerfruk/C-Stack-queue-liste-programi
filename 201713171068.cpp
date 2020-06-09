@@ -1,5 +1,7 @@
 /*
-*
+*		kodumuz 	https://www.onlinegdb.com/online_c++_compiler 		online compiler da calismaktadir 
+*		ayni zamanda Devc++ de de denenebilir 
+* 
 *		Omer Faruk Tasdemir
 *		201713171068 2.Sinif 1.Ogretim
 *		Veri yapýlarý Vize Ödevi
@@ -373,7 +375,7 @@ class IkiliAgac		//binary tree yapimizi yazalim
 
 void IkiliAgac :: dugumEkle(int sayi)	// dugume ekleme metodumuzu burada yazicaz
 {	
-	toplam++;
+	toplam++;		// her dugum eklendiginde bir artsin ki elemanlari sayalim 
 	AgacDugum *yeniDugum,*dugumPtr; 	// 2 farkli pointer olusturduk birisi agac ici gezimler icin digeri yeni dugumu isaret edicek
 	
 	yeniDugum = new AgacDugum;
@@ -608,7 +610,7 @@ void HashTablo :: Sil (int Anahtar)		//silme metodumuz
 		}
 		return;
 	}
-	if(Veri[mod]->Anahtar==Anahtar) // verimizin anahtarý anahtara esitmi  ve birden fazla dugum varsa
+	if(Veri[mod]->Anahtar==Anahtar) // verimizin anahtarý anahtara esitmi  ve birden fazla dugum varsas
 	{
 		Dugum* pDon = Veri[mod]->pSonraki;		// degerimizin adrsini donus degerimizin adrsine gonderdik
 		delete Veri[mod];		// degerimizi sildik
@@ -1025,9 +1027,11 @@ int main() // main fonk islemler burada gerceklesecek
 			}else if(secim == 5)
 			{
 				int aranan;
+				cout<<"lutfen aramak istediginiz veriyi giriniz \nunutmayin ki girilen degerler gore siralama yapilacaktir. ";
 				cin>>aranan;
 				Dugum* pTemp = h.Bul(aranan);
-				while (pTemp!=NULL)
+				//dugumu yazdiralim 
+				while (pTemp != NULL)
 				{
 				cout<<pTemp->Anahtar<<endl;
 				pTemp = pTemp->pSonraki;

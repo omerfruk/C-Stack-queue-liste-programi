@@ -561,20 +561,37 @@ void HashTablo :: tumunuSil()
 }
 void HashTablo :: Ekle(int Anahtar)
 {
-	toplam++;
-	Dugum*	pYeni = new Dugum(Anahtar);		//dugum tipinde veriyi tutacak bi pointer olusturalim
-	int mod = Anahtar % MAX;	//modumuzu bulalim
-	if(!Veri[mod])	//eleman varmi kontrol edelim
-		{
-			Veri[mod] = pYeni;	//yoksa yeni elemanimizi yerlestirecez
-			return;		//bitti
-		}
-	Dugum* pTemp = Veri[mod];	// gecici bir eleman olusturalim
-	while (pTemp->pSonraki !=NULL)	// son elemana gidelim 
-	{
-		pTemp = pTemp->pSonraki;		//onceki elemani simdiki gecidi elemana atayalim
-		pTemp->pSonraki = pYeni;		//gecici elemanin sonrasina yeni degeri atayalim
-	}
+ toplam++;
+ Dugum* pYeni = new Dugum(Anahtar);  //dugum tipinde veriyi tutacak bi pointer olusturalim
+ int mod = Anahtar % MAX; //modumuzu bulalim
+ if(!Veri[mod]) //eleman varmi kontrol edelim
+  {
+   Veri[mod] = pYeni; //yoksa yeni elemanimizi yerlestirecez
+   return;  //bitti
+  }
+
+ Dugum* pTemp = Veri[mod]; // gecici bir eleman olusturalim
+ // listenin baþýna insert edilecekse Veri[mod] deðiþecek
+ if(pTemp->Anahtar > pYeni->Anahtar)
+ {
+  pYeni->pSonraki = pTemp;
+  Veri[mod] = pYeni;
+  return;
+ }
+
+ Dugum* pOnceki;
+ while (pTemp != NULL)
+ {
+  if(pTemp->Anahtar > pYeni->Anahtar)
+  { 
+   pOnceki->pSonraki = pYeni;
+   break;
+  }
+  pOnceki = pTemp;
+  pTemp = pTemp->pSonraki;
+ }
+ pOnceki->pSonraki = pYeni;
+ pYeni->pSonraki = pTemp;
 }
 
 Dugum* HashTablo :: Bul(int Anahtar)		//bul metodumuz

@@ -574,24 +574,24 @@ void HashTablo :: Ekle(int Anahtar)
  // listenin baþýna insert edilecekse Veri[mod] deðiþecek
  if(pTemp->Anahtar > pYeni->Anahtar)
  {
-  pYeni->pSonraki = pTemp;
-  Veri[mod] = pYeni;
+  pYeni->pSonraki = pTemp;		// sirali ekleme icin	
+  Veri[mod] = pYeni;		//sirali ekleme yapacagimiz degeri atadik
   return;
  }
 
- Dugum* pOnceki;
- while (pTemp != NULL)
+ Dugum* pOnceki;		// onceki veriyi tutacak pointer
+ while (pTemp != NULL)		// kontrol osmu?
  {
-  if(pTemp->Anahtar > pYeni->Anahtar)
+  if(pTemp->Anahtar > pYeni->Anahtar)		//büyüklüge gore sirala
   { 
-   pOnceki->pSonraki = pYeni;
-   break;
+   pOnceki->pSonraki = pYeni;		// atama yaptik
+   break;		// bittirelim 
   }
-  pOnceki = pTemp;
-  pTemp = pTemp->pSonraki;
+  pOnceki = pTemp;		//	gecici degeri p tempe atayalim
+  pTemp = pTemp->pSonraki;		// yeni gecici degiskenimiz adresimizi gosteren yer olsun 
  }
- pOnceki->pSonraki = pYeni;
- pYeni->pSonraki = pTemp;
+ pOnceki->pSonraki = pYeni;		//yeni girilen degerin adrsini adres alanýmýza yerleþtirelim
+ pYeni->pSonraki = pTemp;		// gecici degiskenimizi yeni degerimize atayalim 
 }
 
 Dugum* HashTablo :: Bul(int Anahtar)		//bul metodumuz
